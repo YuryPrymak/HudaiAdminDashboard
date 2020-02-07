@@ -11,6 +11,11 @@ body {
   .wrapper {
     max-width: 1360px;
     margin: 0 auto;
+
+    .content-wrapper {
+      display: flex;
+      margin-top: 5px;
+    }
   }
 }
 
