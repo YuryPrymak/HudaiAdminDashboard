@@ -1,0 +1,38 @@
+@mixin transition($value...) {
+  -webkit-transition: $value;
+  -moz-transition: $value;
+  -ms-transition: $value;
+  -o-transition: $value;
+  transition: $value;
+}
+
+@mixin transform($value) {
+  -webkit-transform: $value;
+  -moz-transform: $value;
+  -ms-transform: $value;
+  -o-transform: $value;
+  transform: $value;
+}
+
+@mixin objectFit($value) {
+  -webkit-object-fit: $value;
+  -moz-object-fit: $value;
+  -ms-object-fit: $value;
+  -o-object-fit: $value;
+  object-fit: $value;
+}
+
+@mixin animation($value...) {
+  -webkit-animation: $value;
+  animation: $value;
+}
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  
+  @keyframes #{$name} {
+    @content;
+  }
+}
