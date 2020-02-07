@@ -6,6 +6,12 @@
 
 body {
   min-width: 320px;
+  background-color: #212228;
+
+  .wrapper {
+    max-width: 1360px;
+    margin: 0 auto;
+  }
 }
 
 ul {

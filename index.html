@@ -9,7 +9,55 @@
   <link rel="stylesheet" href="dist/main.css">
 </head>
 <body>
-  
+  <div class="wrapper">
+    <header class="header">
+      <div class="logo-wrapper">
+        <a href="#" class="logo">Hudai</a>
+        <button class="btn-nav-toggle">
+          <svg>
+            <rect id="rect-1" width="100%" height="12%" y="10%"/>
+            <rect id="rect-2" width="100%" height="12%" y="44%"/>
+            <rect id="rect-3" width="100%" height="12%" y="78%"/>
+          </svg>
+        </button>
+      </div>
+      <div class="search-box">
+        <form class="search-form" action="/" method="GET">
+          <input class="search-input" type="text" name="search-request" placeholder="Type to search ...">
+        </form>
+        <button class="btn-search">
+          <svg xmlns="http://www.w3.org/2000/svg" width="29.34" height="29.344" viewBox="0 0 29.34 29.344" preserveAspectRatio="none">
+            <path d="M1017,32a10.987,10.987,0,0,1,8.68,17.74l9.25,9.25a1.358,1.358,0,0,1,0,1.945,1.354,1.354,0,0,1-.97.4,1.371,1.371,0,0,1-.97-0.4l-9.25-9.25A11,11,0,1,1,1017,32Zm0,19.253A8.251,8.251,0,1,0,1008.75,43,8.259,8.259,0,0,0,1017,51.253Z" transform="translate(-1006 -32)"/>
+          </svg>
+        </button>
+      </div>
+      <button class="btn-notification">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25.69" height="29.344" viewBox="0 0 25.69 29.344" preserveAspectRatio="none">
+          <path d="M1107.63,50.438c-1.77-1.527-3.03-5.586-3.03-10.353a8.245,8.245,0,0,0-5.55-7.788,2.741,2.741,0,0,0-5.41,0,8.245,8.245,0,0,0-5.55,7.788c0,4.766-1.26,8.825-3.03,10.353a4.513,4.513,0,0,0-1.55,3.4,2.75,2.75,0,0,0,2.75,2.751h7.34a2.75,2.75,0,1,0,5.5,0h7.33a2.75,2.75,0,0,0,2.75-2.751A4.513,4.513,0,0,0,1107.63,50.438Zm-21.37,3.4a1.751,1.751,0,0,1,.6-1.319c2.46-2.123,3.99-6.888,3.99-12.433a5.5,5.5,0,1,1,11,0c0,5.546,1.52,10.31,3.98,12.434a1.75,1.75,0,0,1,.6,1.318h-20.17Z" transform="translate(-1083.5 -30)"/>
+        </svg>
+        <div class="notification-counter">7</div>
+      </button>
+      <div class="user-info">
+        <img class="user-photo" src="/src/img/header/user.png" alt="Person">
+        <div class="user">
+          <p class="user-name">Joy Dutta</p>
+          <p class="user-post">Administrator</p>
+        </div>
+        <div class="profile-options">
+          <button class="btn-profile-options">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" preserveAspectRatio="none">
+              <path d="M5.293 9.707l6 6c0.391 0.391 1.024 0.391 1.414 0l6-6c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z"></path>
+            </svg>
+          </button>
+          <ul class="options">
+            <li><a href="#">My account</a></li>
+            <li><a href="#">Log out</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+  </div>
+
   <script src="dist/main.js"></script>
 </body>
 </html>
