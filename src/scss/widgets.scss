@@ -1,0 +1,140 @@
+@import './src/scss/partials/_fonts';
+@import './src/scss/partials/_mixins';
+
+.widgets-wrapper {
+  width: 100%;
+  margin: 0 30px 30px 15px;
+
+  .dashboard-info {
+    height: 85px;
+    display: flex;
+    align-items: center;
+
+    .name {
+      margin-left: 25px;
+      font-size: 24px;
+      font-family: 'Roboto', sans-serif;
+      color: #fff;
+    }
+
+    .last-activity {
+      margin-left: 30px;
+      font-size: 10px;
+      font-family: 'Roboto', sans-serif;
+      color: #909194;
+    }
+
+    .label {
+      margin-left: auto;
+      font-size: 14px;
+      font-family: 'Roboto', sans-serif;
+      color: #fff;
+    }
+
+    .btn-add-widget {
+      width: 28px;
+      height: 28px;
+      margin-left: 30px;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+
+      &:hover {
+        svg {
+          fill: #fff;
+        }
+      }
+
+      svg {
+        width: 100%;
+        height: 100%;
+        fill: #c2c3c5;
+        @include transition(fill .1s ease-in-out);
+      }
+    }
+  }
+
+  .info-cards {
+    display: flex;
+    justify-content: space-between;
+
+    .card {
+      width: calc(100% / 4 - 10px);
+      height: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+      position: relative;
+      padding-right: 10px;
+      background-color: #282a31;
+      box-shadow: 0px 5px 7px 0px rgba(24, 24, 25, 0.75);
+
+      &::before {
+        content: '';
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        border-radius: 50%;
+        box-shadow: 0px 2px 6px 0px rgba(24, 24, 25, 0.75);
+      }
+
+      &:nth-child(1) {
+        border-bottom: 5px solid #6fe7dd;
+
+        &::before {
+          background: url('/src/img/info-cards-icons/view.svg') center no-repeat, linear-gradient(#3d404a, #3d404a);
+          background-size: 25px;
+        }
+      }
+
+      &:nth-child(2) {
+        border-bottom: 5px solid #3490de;
+
+        &::before {
+          background: url('/src/img/info-cards-icons/user.svg') center no-repeat, linear-gradient(#3d404a, #3d404a);
+          background-size: 25px;
+        }
+      }
+
+      &:nth-child(3) {
+        border-bottom: 5px solid #6639a6;
+
+        &::before {
+          background: url('/src/img/info-cards-icons/rocket.svg') center no-repeat, linear-gradient(#3d404a, #3d404a);
+          background-size: 25px;
+        }
+      }
+
+      &:nth-child(4) {
+        border-bottom: 5px solid #d11e5b;
+
+        &::before {
+          background: url('/src/img/info-cards-icons/letter.svg') center no-repeat, linear-gradient(#3d404a, #3d404a);
+          background-size: 25px;
+        }
+      }
+
+      .name {
+        color: #909194;
+        font-size: 10px;
+        font-family: 'Roboto', sans-serif;
+        text-align: right;
+        text-transform: uppercase;
+      }
+
+      .value {
+        color: #b1b2b5;
+        font-size: 24px;
+        font-family: 'Roboto', sans-serif;
+        text-align: right;
+
+        .units {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

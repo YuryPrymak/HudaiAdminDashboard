@@ -5,3 +5,4 @@ import './js/nav';
 import './scss/main.scss';
 import './scss/header.scss';
 import './scss/nav.scss';
+import './scss/widgets.scss';
