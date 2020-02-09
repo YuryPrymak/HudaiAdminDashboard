@@ -3,7 +3,7 @@
 
 .widgets-wrapper {
   width: 100%;
-  margin: 0 30px 30px 15px;
+  margin: 0 45px 30px 15px;
 
   .dashboard-info {
     height: 85px;
@@ -57,6 +57,7 @@
   .info-cards {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 15px;
 
     .card {
       width: calc(100% / 4 - 10px);
@@ -135,6 +136,49 @@
           font-size: 14px;
         }
       }
+    }
+  }
+
+  .widgets {
+    display: grid;
+    grid-template-columns: 470px 150px 300px;
+    grid-template-rows: auto;
+    grid-gap: 20px;
+    grid-template-areas: "site-views site-views weekly-earning"
+                         "site-views site-views earn-by-country"
+                         "contacts reviews reviews"
+                         "tasks radar-chart radar-chart";
+
+    .widget {
+      box-shadow: 0px 4px 10px 0px rgba(24, 24, 25, 0.75);
+    }
+
+    .widget-site-views {
+      grid-area: site-views;
+    }
+
+    .widget-weekly-earning {
+      grid-area: weekly-earning;
+    }
+
+    .widget-earn-by-country {
+      grid-area: earn-by-country;
+    }
+
+    .widget-contacts {
+      grid-area: contacts;
+    }
+
+    .widget-reviews {
+      grid-area: reviews;
+    }
+
+    .widget-tasks {
+      grid-area: tasks;
+    }
+
+    .widget-radar-chart {
+      grid-area: radar-chart;
     }
   }
 }
