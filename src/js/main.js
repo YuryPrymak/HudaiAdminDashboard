@@ -3,6 +3,7 @@ export default (() => {
   const yearsList = document.querySelector('.widget-site-views .years-list');
 
   const optionsListWeeklyEarning = document.querySelector('.widget-weekly-earning .options-list');
+  const optionsListWidgetEarnByCountry = document.querySelector('.widget-earn-by-country .options-list');
 
   window.addEventListener('click', e => {
     if(!e.target.closest('.widget-site-views .btn-show-years-list')) {
@@ -13,6 +14,9 @@ export default (() => {
     }
     if(!e.target.closest('.widget-weekly-earning .btn-options')) {
       optionsListWeeklyEarning.classList.remove('show-options');
+    }
+    if(!e.target.closest('.widget-earn-by-country .btn-options')) {
+      optionsListWidgetEarnByCountry.classList.remove('show-options');
     }
   });
 })();
