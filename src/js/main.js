@@ -4,6 +4,7 @@ export default (() => {
 
   const optionsListWeeklyEarning = document.querySelector('.widget-weekly-earning .options-list');
   const optionsListWidgetEarnByCountry = document.querySelector('.widget-earn-by-country .options-list');
+  const optionsListWidgetContacts = document.querySelector('.widget-contacts .options-list');
 
   window.addEventListener('click', e => {
     if(!e.target.closest('.widget-site-views .btn-show-years-list')) {
@@ -17,6 +18,9 @@ export default (() => {
     }
     if(!e.target.closest('.widget-earn-by-country .btn-options')) {
       optionsListWidgetEarnByCountry.classList.remove('show-options');
+    }
+    if(!e.target.closest('.widget-contacts .btn-options')) {
+      optionsListWidgetContacts.classList.remove('show-options');
     }
   });
 })();

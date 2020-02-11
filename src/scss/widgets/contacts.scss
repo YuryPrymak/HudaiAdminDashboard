@@ -1,0 +1,264 @@
+@import './src/scss/partials/_fonts';
+@import './src/scss/partials/_mixins';
+
+.widgets-wrapper {
+  .widget-contacts {
+    padding-bottom: 30px;
+    background-color: #282a31;
+
+    .widget-header {
+      height: 50px;
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+      background-color: #282a31;
+      color: #b1b2b5;
+
+      .title {
+        margin-left: 20px;
+        font-size: 18px;
+        font-family: 'Roboto', sans-serif;
+      }  
+
+      .widget-options {
+        position: relative;
+        margin: 0 10px 0 auto;
+
+        .btn-options {
+          width: 30px;
+          height: 30px;
+          border: none;
+          border-radius: 50%;
+          background-color: transparent;
+          cursor: pointer;
+  
+          &:hover {
+            svg {
+              fill: #fff;
+            }
+          }
+  
+          svg {
+            width: 70%;
+            height: 70%;
+            margin-top: 3px;
+            fill: #b1b2b5;
+            @include transition(fill .1s ease-in-out);
+          }
+        }
+
+        .options-list {
+          display: none;
+          position: absolute;
+          top: 30px;
+          right: 0;
+          border-radius: 5px;
+          background-color: #282a31;
+          box-shadow: 0 0 7px 0 rgba(24, 24, 25, 0.75);
+          z-index: 1;
+
+          li {
+            margin: 10px 0;
+
+            a {
+              display: block;
+              padding: 0 15px;
+              font-size: 18px;
+              font-family: 'Roboto', sans-serif;
+              color: #b7b8ba;
+              white-space: nowrap;
+              @include transition(color .1s ease-in-out);
+
+              &:hover {
+                color: #fff;
+              }
+            }
+          }
+        }
+
+        .show-options {
+          display: block;
+        }
+      }
+    }
+
+    .contacts {
+      height: 350px;
+      margin: 0 20px;
+      padding-right: 5px;
+      overflow: auto;
+
+      &::-webkit-scrollbar {
+        width: 5px;
+        background-color: #33353b;
+      }
+      
+      &::-webkit-scrollbar-thumb {
+        background-color: #c2c3c5;
+      }
+
+      .contact {
+        height: 70px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        border-bottom: 2px solid #33353b;
+
+        .photo {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          @include objectFit(cover);
+        }
+
+        .info {
+          margin-left: 10px;
+
+          .name {
+            position: relative;
+            font-size: 14px;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+
+            &::after {
+              content: '';
+              width: 7px;
+              height: 7px;
+              position: absolute;
+              top: 5px;
+              right: -13px;
+              border-radius: 50%;
+              background-color: #1d1d23;
+            }
+          }
+
+          .company {
+            font-size: 11px;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+          }
+        }
+
+        .btn-send-message,
+        .btn-send-mail {
+          width: 30px;
+          height: 30px;
+          border: none;
+          background: transparent;
+          cursor: pointer;
+
+          &:hover {
+            svg {
+              fill: #fff;
+            }
+          }
+
+          svg {
+            fill: #c2c3c5;
+            @include transition(fill .1s ease-in-out);
+          }
+        }
+
+        .btn-send-message {
+          margin-left: auto;
+        
+          svg {
+            width: 95%;
+            height: 100%;
+          }
+        }
+
+        .btn-send-mail {
+          margin: 0 10px;
+
+          svg {
+            width: 80%;
+            height: 80%;
+            margin-top: 2px;
+          }
+        }
+        
+        .new-messages-counter {
+          width: 18px;
+          height: 18px;
+          position: absolute;
+          top: 10px;
+          left: 40px;
+          padding-top: 1px;
+          border-radius: 50%;
+          background-color: #e02865;
+          color: #fff;
+          font-size: 14px;
+          font-weight: 500;
+          font-family: 'Roboto', sans-serif;
+          text-align: center;
+          text-shadow: 0px 2px 1px rgba(24, 24, 25, 0.75);
+        }
+      }
+
+      .hide-contact {
+        display: none;
+      }
+
+      .status-online {
+        .info {
+          .name {
+            &::after {
+              background-color: #6fe7dd;
+            }
+          }
+        }
+      }
+    }
+
+    .search-contact {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      position: relative;
+
+      .input-search-contact {
+        width: 70%;
+        height: 40px;
+        padding: 0 40px 0 7px;
+        border: 2px solid #212328;
+        border-radius: 5px;
+        background-color: #282a31;
+        font-size: 18px;
+        font-family: 'Roboto', sans-serif;
+        color: #57595e;
+
+        &::placeholder {
+          font-size: 18px;
+          font-family: 'Roboto', sans-serif;
+          color: #57595e;
+        }
+      }
+
+      .btn-clear {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        right: 15%;
+        border: none;
+        border-radius: 5px;
+        background-color: transparent;
+        cursor: pointer;
+    
+        &:hover {
+          svg {
+            fill: #fff;
+          }
+        }
+    
+        svg {
+          width: 65%;
+          height: 65%;
+          margin: 3px 0 0 2px;
+          fill: #44464c;
+          @include transition(fill .1s ease-in-out);
+        }
+      }
+    }
+  }
+}
