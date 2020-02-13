@@ -7,6 +7,7 @@ export default (() => {
   const optionsListWidgetContacts = document.querySelector('.widget-contacts .options-list');
   const optionsListWidgetReviews = document.querySelector('.widget-reviews .options-list');
   const optionsListWidgetTasks = document.querySelector('.widget-tasks .options-list');
+  const optionsListWidgetRadarChart = document.querySelector('.widget-radar-chart .options-list');
 
   window.addEventListener('click', e => {
     if(!e.target.closest('.widget-site-views .btn-show-years-list')) {
@@ -29,6 +30,9 @@ export default (() => {
     }
     if(!e.target.closest('.widget-tasks .btn-options')) {
       optionsListWidgetTasks.classList.remove('show-options');
+    }
+    if(!e.target.closest('.widget-radar-chart .btn-options')) {
+      optionsListWidgetRadarChart.classList.remove('show-options');
     }
   });
 })();

@@ -7,6 +7,7 @@ import './js/widgets/earn-by-country';
 import './js/widgets/contacts';
 import './js/widgets/reviews';
 import './js/widgets/tasks';
+import './js/widgets/radar-chart';
 
 import './scss/main.scss';
 import './scss/header.scss';
@@ -18,3 +19,4 @@ import './scss/widgets/earn-by-country.scss';
 import './scss/widgets/contacts.scss';
 import './scss/widgets/reviews.scss';
 import './scss/widgets/tasks.scss';
+import './scss/widgets/radar-chart.scss';
