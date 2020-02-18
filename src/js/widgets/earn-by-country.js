@@ -1,7 +1,4 @@
 export default (() => {
-  const btnOptions = document.querySelector('.widget-earn-by-country .btn-options');
-  const optionsList = document.querySelector('.widget-earn-by-country .options-list');
-
   const infoCountry = document.querySelectorAll('.widget-earn-by-country .country');
   const infoValue = document.querySelectorAll('.widget-earn-by-country .value');
 
@@ -44,7 +41,7 @@ export default (() => {
     },
   ];
 
-  let startPost = 1.5 * PI;
+  let startPost = 1.5 * PI; // top of circle
 
   const calcOtherValue = function() {
     let value = 0;
@@ -74,8 +71,4 @@ export default (() => {
     infoCountry[i].textContent = data[i].country;
     infoValue[i].textContent = `- ${data[i].value}%`;
   }
-
-  btnOptions.addEventListener('click', () => {
-    optionsList.classList.toggle('show-options');
-  });
 })();

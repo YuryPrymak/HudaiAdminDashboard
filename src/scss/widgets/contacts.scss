@@ -6,87 +6,23 @@
     padding-bottom: 30px;
     background-color: #282a31;
 
-    .widget-header {
-      height: 50px;
-      display: flex;
-      align-items: center;
-      padding: 10px 0;
-      background-color: #282a31;
-      color: #b1b2b5;
-
-      .title {
-        margin-left: 20px;
-        font-size: 18px;
-        font-family: 'Roboto', sans-serif;
-      }  
-
-      .widget-options {
-        position: relative;
-        margin: 0 10px 0 auto;
-
-        .btn-options {
-          width: 30px;
-          height: 30px;
-          border: none;
-          border-radius: 50%;
-          background-color: transparent;
-          cursor: pointer;
-  
-          &:hover {
-            svg {
-              fill: #fff;
-            }
-          }
-  
-          svg {
-            width: 70%;
-            height: 70%;
-            margin-top: 3px;
-            fill: #b1b2b5;
-            @include transition(fill .1s ease-in-out);
-          }
-        }
-
-        .options-list {
-          display: none;
-          position: absolute;
-          top: 30px;
-          right: 0;
-          border-radius: 5px;
-          background-color: #282a31;
-          box-shadow: 0 0 7px 0 rgba(24, 24, 25, 0.75);
-          z-index: 1;
-
-          li {
-            margin: 10px 0;
-
-            a {
-              display: block;
-              padding: 0 15px;
-              font-size: 18px;
-              font-family: 'Roboto', sans-serif;
-              color: #b7b8ba;
-              white-space: nowrap;
-              @include transition(color .1s ease-in-out);
-
-              &:hover {
-                color: #fff;
-              }
-            }
-          }
-        }
-
-        .show-options {
-          display: block;
-        }
-      }
-    }
-
     .contacts {
       height: 350px;
       margin: 0 20px;
+      position: relative;
       padding-right: 5px;
       overflow: auto;
+
+      &::before {
+        content: 'Contacts not found';
+        display: none;
+        position: absolute;
+        top: 10px;
+        left: calc(50%);
+        color: #b1b2b5;
+        font-size: 18px;
+        @include transform(translateX(-50%));
+      }
 
       &::-webkit-scrollbar {
         width: 5px;
@@ -117,7 +53,6 @@
           .name {
             position: relative;
             font-size: 14px;
-            font-family: 'Roboto', sans-serif;
             color: #fff;
 
             &::after {
@@ -133,8 +68,7 @@
           }
 
           .company {
-            font-size: 11px;
-            font-family: 'Roboto', sans-serif;
+            font-size: 12px;
             color: #fff;
           }
         }
@@ -190,7 +124,6 @@
           color: #fff;
           font-size: 14px;
           font-weight: 500;
-          font-family: 'Roboto', sans-serif;
           text-align: center;
           text-shadow: 0px 2px 1px rgba(24, 24, 25, 0.75);
         }
@@ -211,6 +144,12 @@
       }
     }
 
+    .contacts-list-empty {
+      &::before {
+        display: block;
+      }
+    }
+
     .search-contact {
       margin-top: 20px;
       display: flex;
@@ -225,12 +164,10 @@
         border-radius: 5px;
         background-color: #282a31;
         font-size: 18px;
-        font-family: 'Roboto', sans-serif;
         color: #57595e;
 
         &::placeholder {
           font-size: 18px;
-          font-family: 'Roboto', sans-serif;
           color: #57595e;
         }
       }

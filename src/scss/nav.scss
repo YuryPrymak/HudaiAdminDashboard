@@ -26,7 +26,6 @@
         text-align: left;
         font-size: 24px;
         font-weight: 300;
-        font-family: 'Roboto', sans-serif;
         cursor: pointer;
         white-space: nowrap;
         @include transition(color .1s ease-in-out);
@@ -78,7 +77,6 @@
           color: #fff;
           font-size: 16px;
           font-weight: 500;
-          font-family: 'Roboto', sans-serif;
           text-shadow: 0px 2px 1px rgba(24, 24, 25, 0.75);
         }
       }
@@ -98,7 +96,6 @@
             line-height: 70px;
             font-size: 24px;
             font-weight: 300;
-            font-family: 'Roboto', sans-serif;
             @include transition(color .1s ease-in-out);
 
             &:hover {
@@ -119,7 +116,6 @@
               color: #fff;
               font-size: 16px;
               font-weight: 500;
-              font-family: 'Roboto', sans-serif;
               text-shadow: 0px 2px 1px rgba(24, 24, 25, 0.75);
             }
 

@@ -1,7 +1,5 @@
 export default (() => {
   const optionsListSiteViews = document.querySelector('.widget-site-views .options-list');
-  const yearsList = document.querySelector('.widget-site-views .years-list');
-
   const optionsListWeeklyEarning = document.querySelector('.widget-weekly-earning .options-list');
   const optionsListWidgetEarnByCountry = document.querySelector('.widget-earn-by-country .options-list');
   const optionsListWidgetContacts = document.querySelector('.widget-contacts .options-list');
@@ -9,10 +7,16 @@ export default (() => {
   const optionsListWidgetTasks = document.querySelector('.widget-tasks .options-list');
   const optionsListWidgetRadarChart = document.querySelector('.widget-radar-chart .options-list');
 
+  const btnsOptions = document.querySelectorAll('.widget .btn-options');
+  const optionsLists = document.querySelectorAll('.widget .options-list');
+
+  btnsOptions.forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+      optionsLists[i].classList.toggle('show-options');
+    });
+  });
+
   window.addEventListener('click', e => {
-    if(!e.target.closest('.widget-site-views .btn-show-years-list')) {
-      yearsList.classList.remove('show-years-list');
-    }
     if(!e.target.closest('.widget-site-views .btn-options')) {
       optionsListSiteViews.classList.remove('show-options');
     }

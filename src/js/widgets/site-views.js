@@ -3,9 +3,6 @@ export default (() => {
   const yearsList = document.querySelector('.widget-site-views .years-list');
   const yearDisplay = document.querySelector('.widget-site-views .year');
 
-  const btnOptions = document.querySelector('.widget-site-views .btn-options');
-  const optionsList = document.querySelector('.widget-site-views .options-list');
-
   const canvas = document.querySelector('.widgets .site-views');
   const c = canvas.getContext('2d');
   const width = 640;
@@ -184,6 +181,14 @@ export default (() => {
   let rowStep = null;
   const colStep = parseInt((width - (paddingLeft + paddingRight)) / (months.length), 10);
 
+  const getDataValInRatio = function(value) {
+    return height - parseInt((value / valueStep) * rowStep, 10) - paddingBottom;
+  };
+
+  const getDataDayInRatio = function(month, day) {
+    return parseInt(colStep * month, 10) + paddingLeft - colStep + parseInt((colStep / 30) * day, 10);
+  };
+
   const drawGrid = function() {
     c.beginPath();
     c.strokeStyle = '#33353b';
@@ -221,21 +226,22 @@ export default (() => {
     c.beginPath();
     c.fillStyle = '#8f9094';
     c.textAlign = 'start';
+    c.font = 'normal 12px sans-serif';
 
     // Months (axis X)
     months.forEach((el, i) => {
-      c.fillText(el, colStep * (i + 1) + (paddingLeft - colStep - 10), height - bgHeightBottom + 15);
+      c.fillText(el, colStep * (i + 1) + (paddingLeft - colStep - 12), height - bgHeightBottom + 15);
     });
 
     // Values (axis Y)
     c.textAlign = 'end';
     for(let i = 0; i < parseInt(highestValue / valueStep + 2, 10); i++) {
-      c.fillText(`${valueStep * i}K`, bgWidthLeft - 5, height - rowStep * (i + 1) - (paddingBottom - rowStep + 1));
+      c.fillText(`${valueStep * i}K`, bgWidthLeft - 5, height - rowStep * (i + 1) - (paddingBottom - rowStep));
     }
     c.closePath();
   };
 
-  const drawDiagram = function(data) {
+  const drawDiagram = function(currentData) {
     c.beginPath();
     const grad = c.createLinearGradient(0, 0, width, height);
     grad.addColorStop(0, '#c1255d');
@@ -245,9 +251,9 @@ export default (() => {
     c.strokeStyle = grad;
     c.lineWidth = '3';
 
-    for(let i = 0; i < data.length; i++) {
-      const valInRatio = height - parseInt((data[i].value / valueStep) * rowStep, 10) - paddingBottom;
-      const dayInRatio = parseInt(colStep * data[i].month, 10) + paddingLeft - colStep + parseInt((colStep / 30) * data[i].day, 10);
+    for(let i = 0; i < currentData.length; i++) {
+      const valInRatio = getDataValInRatio(currentData[i].value);
+      const dayInRatio = getDataDayInRatio(currentData[i].month, currentData[i].day);
 
       if(i === 0) {
         c.moveTo(dayInRatio, valInRatio);
@@ -270,16 +276,15 @@ export default (() => {
 
   const drawBg = function() {
     const bottomPointY = parseInt(highestValue / valueStep + 1, 10) * rowStep + paddingTop;
+    const gradBg = c.createLinearGradient(300, 0, 300, 300);
+
     c.beginPath();
     c.moveTo(bgCoordinates[0].x, bgCoordinates[0].y);
-
     for(let i = 1; i < bgCoordinates.length; i++) {
       c.lineTo(bgCoordinates[i].x, bgCoordinates[i].y);
     }
     c.lineTo(bgCoordinates[bgCoordinates.length - 1].x, bottomPointY);
     c.lineTo(bgCoordinates[0].x, bottomPointY);
-
-    const gradBg = c.createLinearGradient(300, 0, 300, 300);
     gradBg.addColorStop(0, '#6fe7dd99');
     gradBg.addColorStop(0.6, '#2e36cf99');
     gradBg.addColorStop(1, '#6639a60d');
@@ -290,7 +295,7 @@ export default (() => {
     c.closePath();
   };
 
-  const drawDots = function(data) {
+  const drawDots = function(currentData) {
     const draw = function(x, y) {
       c.beginPath();
       c.strokeStyle = '#28dcbc';
@@ -307,21 +312,21 @@ export default (() => {
       c.closePath();
     };
 
-    for(let i = 0; i < data.length; i++) {
-      const valInRatio = height - parseInt((data[i].value / valueStep) * rowStep, 10) - paddingBottom;
-      const dayInRatio = parseInt(colStep * data[i].month, 10) + paddingLeft - colStep + parseInt((colStep / 30) * data[i].day, 10);
+    for(let i = 0; i < currentData.length; i++) {
+      const valInRatio = getDataValInRatio(currentData[i].value);
+      const dayInRatio = getDataDayInRatio(currentData[i].month, currentData[i].day);
 
-      if(i !== 0 && i < data.length - 1) {
-        if(data[i - 1].value < data[i].value && data[i].value > data[i + 1].value) {
+      if(i !== 0 && i < currentData.length - 1) {
+        if(currentData[i - 1].value < currentData[i].value && currentData[i].value > currentData[i + 1].value) {
           draw(dayInRatio, valInRatio);
         }
       }
 
-      if(i === 0 && data[0].value > data[1].value) {
+      if(i === 0 && currentData[0].value > currentData[1].value) {
         draw(dayInRatio, valInRatio);
       }
 
-      if(i === data.length - 1 && data[i].value > data[i - 1].value) {
+      if(i === currentData.length - 1 && currentData[i].value > currentData[i - 1].value) {
         draw(dayInRatio, valInRatio);
       }
     }
@@ -355,10 +360,6 @@ export default (() => {
 
   initDrawing(defaultDataYear);
 
-  btnOptions.addEventListener('click', () => {
-    optionsList.classList.toggle('show-options');
-  });
-
   btnShowYearsList.addEventListener('click', () => {
     yearsList.classList.toggle('show-years-list');
   });
@@ -368,6 +369,12 @@ export default (() => {
       e.preventDefault();
       yearDisplay.textContent = e.target.textContent;
       initDrawing(parseInt(e.target.textContent, 10));
+    }
+  });
+
+  window.addEventListener('click', e => {
+    if(!e.target.closest('.widget-site-views .btn-show-years-list')) {
+      yearsList.classList.remove('show-years-list');
     }
   });
 })();

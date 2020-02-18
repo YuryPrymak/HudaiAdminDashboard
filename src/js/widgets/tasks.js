@@ -1,6 +1,4 @@
 export default (() => {
-  const btnOptions = document.querySelector('.widget-tasks .btn-options');
-  const optionsList = document.querySelector('.widget-tasks .options-list');
   const tasksList = document.querySelector('.widget-tasks .tasks');
   const newTaskInput = document.querySelector('.widget-tasks .input-add-new-task');
   const btnAddNewTask = document.querySelector('.widget-tasks .btn-add-new-task');
@@ -61,8 +59,4 @@ export default (() => {
   });
 
   btnAddNewTask.addEventListener('click', addNewTask);
-
-  btnOptions.addEventListener('click', () => {
-    optionsList.classList.toggle('show-options');
-  });
 })();

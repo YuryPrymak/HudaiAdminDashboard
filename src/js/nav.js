@@ -33,7 +33,7 @@ export default (() => {
 
   navList.forEach((item, i) => {
     item.addEventListener('click', e => {
-      if(e.target.nodeName === 'BUTTON' || e.target.closest('.btn-sub-nav-toggle')) {
+      if(e.target.closest('.btn-sub-nav-toggle')) {
         subNavToggle(i);
       }
     });

@@ -1,10 +1,7 @@
 export default (() => {
-  const btnOptions = document.querySelector('.widget-weekly-earning .btn-options');
-  const optionsList = document.querySelector('.widget-weekly-earning .options-list');
-
   const canvas = document.querySelector('.widgets .weekly-earning');
   const c = canvas.getContext('2d');
-  const width = 300;
+  const width = 310;
   const height = 160;
   canvas.setAttribute('width', width);
   canvas.setAttribute('height', height);
@@ -82,6 +79,7 @@ export default (() => {
     c.beginPath();
     c.fillStyle = '#8f9094';
     c.textAlign = 'start';
+    c.font = 'normal 10px sans-serif';
 
     // Days (axis X)
     data.forEach((el, i) => {
@@ -101,6 +99,7 @@ export default (() => {
 
     for(let i = 0; i < data.length; i++) {
       const valInRatio = height - parseInt((data[i].value / valueStep) * rowStep, 10) - paddingBottom;
+
       c.lineWidth = '15';
       c.strokeStyle = '#202126';
       c.setLineDash([0]);
@@ -141,8 +140,4 @@ export default (() => {
   };
 
   initDrawing();
-
-  btnOptions.addEventListener('click', () => {
-    optionsList.classList.toggle('show-options');
-  });
 })();

@@ -1,6 +1,4 @@
 export default (() => {
-  const btnOptions = document.querySelector('.widget-radar-chart .btn-options');
-  const optionsList = document.querySelector('.widget-radar-chart .options-list');
   const projectsList = document.querySelector('.widget-radar-chart .projects');
 
   const canvas = document.querySelector('.widgets .radar-chart');
@@ -37,23 +35,18 @@ export default (() => {
     },
   ];
 
-  const canvasCenter = {
-    x: width / 2,
-    y: height / 2,
-  };
-
   const degToRad = function(deg) { // Convert degrees to radians
-    return deg * PI / 180;
+    return (deg * PI) / 180;
   };
 
   const sectorInRadians = degToRad(360 / tech.length);
 
   const getX = function(radius, radian) {
-    return canvasCenter.x + radius * cos(radian - degToRad(90));
+    return width / 2 + radius * cos(radian - degToRad(90));
   };
 
   const getY = function(radius, radian) {
-    return canvasCenter.y + radius * sin(radian - degToRad(90));
+    return height / 2 + radius * sin(radian - degToRad(90));
   };
 
   const getProjectTemplate = function(name, color) {
@@ -70,26 +63,42 @@ export default (() => {
     c.beginPath();
     c.strokeStyle = '#494b51';
     c.lineWidth = '2';
+
     for(let i = 0; i < tech.length; i++) {
-      c.moveTo(canvasCenter.x, canvasCenter.y);
+      c.moveTo(width / 2, height / 2);
       c.lineTo(getX(chartRadius, i * sectorInRadians), getY(chartRadius, i * sectorInRadians));
     }
+
     c.stroke();
     c.closePath();
   };
 
   const drawGrid = function() {
+    const gridParts = 5;
+
+    const getGridX = function(i, j) {
+      const radius = chartRadius - ((chartRadius / gridParts) * i);
+      return getX(radius, j * sectorInRadians);
+    };
+
+    const getGridY = function(i, j) {
+      const radius = chartRadius - ((chartRadius / gridParts) * i);
+      return getY(radius, j * sectorInRadians);
+    };
+
     c.beginPath();
     c.strokeStyle = '#494b51';
     c.lineWidth = '2';
-    for(let i = 0; i < tech.length; i++) {
+
+    for(let i = 0; i < gridParts; i++) {
       for(let j = 0; j <= tech.length; j++) {
         if(j === 0) {
-          c.moveTo(getX(chartRadius - (chartRadius / 5 * i), j * sectorInRadians), getY(chartRadius - (chartRadius / 5 * i), j * sectorInRadians));
+          c.moveTo(getGridX(i, j), getGridY(i, j));
         }
-        c.lineTo(getX(chartRadius - (chartRadius / 5 * i), j * sectorInRadians), getY(chartRadius - (chartRadius / 5 * i), j * sectorInRadians));
+        c.lineTo(getGridX(i, j), getGridY(i, j));
       }
     }
+
     c.stroke();
     c.closePath();
   };
@@ -97,15 +106,16 @@ export default (() => {
   const drawText = function() {
     c.beginPath();
     c.fillStyle = '#d8d8d9';
+    c.font = 'normal 12px sans-serif';
 
     tech.forEach((text, i) => {
       c.textBaseline = 'middle';
 
-      if(getX(chartRadius, i * sectorInRadians) === canvasCenter.x) {
+      if(getX(chartRadius, i * sectorInRadians) === width / 2) {
         c.textAlign = 'center';
-      } else if(getX(chartRadius, i * sectorInRadians) < canvasCenter.x) {
+      } else if(getX(chartRadius, i * sectorInRadians) < width / 2) {
         c.textAlign = 'right';
-      } else if(getX(chartRadius, i * sectorInRadians) > canvasCenter.x) {
+      } else if(getX(chartRadius, i * sectorInRadians) > width / 2) {
         c.textAlign = 'left';
       }
 
@@ -117,15 +127,16 @@ export default (() => {
 
   const drawChart = function(chartData) {
     for(const el of chartData) {
-      c.beginPath();
       const grad = c.createLinearGradient(0, 0, width, height);
+
+      c.beginPath();
       grad.addColorStop(0, el.color);
       grad.addColorStop(1, `${el.color}99`);
       c.strokeStyle = '#ffffff00';
       c.fillStyle = grad;
 
       for(let i = 0; i < tech.length; i++) {
-        const valInRatio = chartRadius / 100 * el.values[i];
+        const valInRatio = (chartRadius / 100) * el.values[i];
         if(i === 0) {
           c.moveTo(getX(valInRatio, i * sectorInRadians), getY(valInRatio, i * sectorInRadians));
         }
@@ -144,10 +155,14 @@ export default (() => {
     c.closePath();
   };
 
-  drawSections();
-  drawGrid();
-  drawText();
-  drawChart(data);
+  const initDrawing = function(currentData) {
+    drawSections();
+    drawGrid();
+    drawText();
+    drawChart(currentData);
+  };
+
+  initDrawing(data);
 
   data.forEach(el => {
     projectsList.insertAdjacentHTML('beforeend', getProjectTemplate(el.name, el.color));
@@ -157,20 +172,11 @@ export default (() => {
     if(e.target.closest('.btn-choice-project')) {
       e.preventDefault();
       const btnIndex = [...projectsList.children].indexOf(e.target.closest('.btn-choice-project').parentElement);
-
       const chart = [];
       chart.push(...data, data[btnIndex]);
       chart.splice(btnIndex, 1);
-
       clearCanvas();
-      drawSections();
-      drawGrid();
-      drawText();
-      drawChart(chart);
+      initDrawing(chart);
     }
-  });
-
-  btnOptions.addEventListener('click', () => {
-    optionsList.classList.toggle('show-options');
   });
 })();
