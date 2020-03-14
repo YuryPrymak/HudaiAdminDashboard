@@ -1,20 +1,45 @@
-@import './src/scss/partials/_fonts';
 @import './src/scss/partials/_mixins';
+@import './src/scss/partials/_media-queries';
 
-.widgets-wrapper  {
+.content-wrapper  {
   .widget-earn-by-country {
+    @include media-sm {
+      padding-bottom: 10px;
+    }
+
     .donut-chart {
       height: 160px;
       display: flex;
+      justify-content: space-around;
       align-items: center;
+
+      @include media-xs {
+        flex-direction: column;
+      }
+
+      @include media-xs {
+        height: auto;
+      }
 
       .earn-by-country {
         margin-left: 20px;
+
+        @include media-xs {
+          margin: 10px 0 0 0;
+        }
       }
 
       .info {
         width: 100%;
         margin: 0 20px;
+
+        @include media-lg {
+          max-width: 150px;
+        }
+
+        @include media-sm {
+          max-width: 200px;
+        }
 
         li {
           display: flex;
@@ -66,6 +91,14 @@
           .value {
             font-size: 12px;
             color: #fff;
+
+            @include media-md {
+              font-size: 14px;
+            }
+    
+            @include media-sm {
+              font-size: 18px;
+            }
           }
         }
       }

@@ -1,14 +1,22 @@
-@import './src/scss/partials/_fonts';
 @import './src/scss/partials/_mixins';
+@import './src/scss/partials/_media-queries';
 
 .nav {
-  min-width: 340px;
+  width: 340px;
   background-color: #24262d;
   box-shadow: 5px 0 5px -5px rgba(24, 24, 25, 0.75);
+  z-index: 999;
+
+  @include media-xl {
+    min-width: 70px;
+    width: 70px;
+  }
+
+  @include media-lg {
+    display: none;
+  }
 
   > ul {
-    width: 100%;
-
     .nav-item {
       height: 70px;
       overflow: hidden;
@@ -18,17 +26,22 @@
         width: 100%;
         height: 70px;
         position: relative;
-        padding-left: 100px;
         border: none;
         border-bottom: 2px solid #35373d;
         background-color: #24262d;
         color: #c8c9ca;
         text-align: left;
+        text-indent: 100px;
         font-size: 24px;
         font-weight: 300;
         cursor: pointer;
         white-space: nowrap;
+        overflow: hidden;
         @include transition(color .1s ease-in-out);
+
+        @include media-sm {
+          font-size: 28px;
+        }
 
         &:hover {
           color: #fff;
@@ -47,6 +60,10 @@
           left: 60px;
           fill: #c2c3c5;
           @include transition(fill .1s ease-in-out);
+
+          @include media-xl {
+            left: 20px;
+          }
         }
 
         .svg-open-close {
@@ -54,7 +71,7 @@
           height: 20px;
           position: absolute;
           top: 25px;
-          left: 290px;
+          right: 25px;
           fill: #7a7b7f;
           @include transition(fill .1s ease-in-out);
           
@@ -75,13 +92,26 @@
           text-align: center;
           background-color: #28dcbc;
           color: #fff;
+          text-indent: 0;
           font-size: 16px;
           font-weight: 500;
           text-shadow: 0px 2px 1px rgba(24, 24, 25, 0.75);
+
+          @include media-xl {
+            left: 38px;
+          }
+
+          @include media-sm {
+            width: 28px;
+            height: 28px;
+            font-size: 20px;
+          }
         }
       }
 
       .sub-nav {
+        overflow: hidden;
+
         li {
           border-bottom: 2px solid #35373d;
 
@@ -90,13 +120,17 @@
             height: 70px;
             display: block;
             position: relative;
-            padding-left: 100px;
             background-color: #212228;
             color: #c8c9ca;
             line-height: 70px;
+            text-indent: 100px;
             font-size: 24px;
             font-weight: 300;
             @include transition(color .1s ease-in-out);
+
+            @include media-sm {
+              font-size: 28px;
+            }
 
             &:hover {
               color: #fff;
@@ -114,9 +148,17 @@
               text-align: center;
               line-height: 20px;
               color: #fff;
+              text-indent: 0;
               font-size: 16px;
               font-weight: 500;
               text-shadow: 0px 2px 1px rgba(24, 24, 25, 0.75);
+
+              @include media-sm {
+                width: 28px;
+                height: 28px;
+                padding-top: 4px;
+                font-size: 20px;
+              }
             }
 
             .new-messages-counter {
@@ -141,6 +183,99 @@
           }
         }
       }
+    }
+  }
+}
+
+.nav-minimize {
+  min-width: 70px;
+  width: 70px;
+
+  > ul {
+    .nav-item {
+      &:hover {
+        overflow: visible;
+      }
+
+      &:hover .btn-sub-nav-toggle {
+        width: 340px;
+        color: #fff;
+
+        .svg-icon {
+          fill: #fff;
+        }
+      }
+
+      &:hover .sub-nav {
+        width: 270px;
+        margin-left: 70px;
+
+        li {
+          a {
+            text-indent: 30px;
+          }
+        }
+      }
+
+      .btn-sub-nav-toggle {
+        .svg-icon {
+          left: 20px;
+          @include transition(fill .1s ease-in-out);
+        }
+
+        .svg-open-close {
+          display: none;
+        }
+
+        .new-messages-counter {
+          left: 38px;
+        }
+      }
+
+      .sub-nav {
+        li {
+          a {
+            height: 68px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.nav-mobile-open {
+  width: 100%;
+  height: calc(100vh - 200px);
+  display: block;
+  position: fixed;
+  bottom: 0;
+  overflow-y: scroll;
+  z-index: 9999;
+
+  @include media-sm {
+    height: calc(100vh - 220px);
+  }
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    background-color: #33353b;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: #c2c3c5;
+  }
+
+  ul {
+    width: 50%;
+    margin: 0 auto;
+    padding-bottom: 10px;
+
+    @include media-md {
+      width: 100%;
+    }
+
+    .sub-nav {
+      width: 100%;
     }
   }
 }

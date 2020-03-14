@@ -1,16 +1,24 @@
-@import './src/scss/partials/_fonts';
 @import './src/scss/partials/_mixins';
+@import './src/scss/partials/_media-queries';
 
-.widgets-wrapper {
+.content-wrapper {
   .widget-tasks {
     padding-bottom: 30px;
     background-color: #282a31;
+
+    @include media-sm {
+      padding-bottom: 20px;
+    }
 
     .tasks {
       height: 320px;
       margin: 0 20px;
       padding-right: 5px;
       overflow: auto;
+
+      @include media-xs {
+        margin: 0 10px;
+      }
 
       &::-webkit-scrollbar {
         width: 5px;
@@ -26,15 +34,28 @@
         display: flex;
         align-items: center;
         position: relative;
+        padding: 10px 0;
         border-bottom: 2px solid #33353b;
 
+        @include media-md {
+          min-height: 80px;
+          height: auto;
+        }
+
         .checkbox {
+          min-width: 20px;
           width: 20px;
           height: 20px;
           border: none;
           border-radius: 5px;
           background-color: #1e1f24;
           cursor: pointer;
+
+          @include media-sm {
+            min-width: 25px;
+            width: 25px;
+            height: 25px;
+          }
         }
 
         .checkbox-toggle {
@@ -42,27 +63,56 @@
         }
 
         .info {
-          margin-left: 10px;
+          margin: 0 10px;
 
           .title {
             position: relative;
             font-size: 18px;
             color: #fff;
+
+            @include media-md {
+              font-size: 20px;
+            }
+    
+            @include media-sm {
+              font-size: 22px;
+            }
           }
 
           .name {
             font-size: 14px;
             color: #57595e;
+
+            @include media-md {
+              font-size: 16px;
+            }
+    
+            @include media-sm {
+              font-size: 18px;
+            }
           }
         }
 
         .btn-remove-task {
+          min-width: 20px;
           width: 20px;
           height: 20px;
           margin: 0 10px 0 auto;
           border: none;
           background: transparent;
           cursor: pointer;
+
+          @include media-sm {
+            min-width: 25px;
+            width: 25px;
+            height: 25px;
+          }
+
+          @include media-xs {
+            min-width: 30px;
+            width: 30px;
+            height: 30px;
+          }
 
           &:hover {
             svg {
@@ -95,13 +145,28 @@
         font-size: 18px;
         color: #57595e;
 
+        @include media-sm {
+          width: 100%;
+          margin-left: 20px;
+          font-size: 22px;
+        }
+
+        @include media-xs {
+          margin-left: 10px;
+        }
+
         &::placeholder {
           font-size: 18px;
           color: #57595e;
+
+          @include media-sm {
+            font-size: 22px;
+          }
         }
       }
 
       .btn-add-new-task {
+        min-width: 40px;
         width: 40px;
         height: 40px;
         margin-left: 5px;
@@ -109,6 +174,14 @@
         border-radius: 5px;
         background-color: transparent;
         cursor: pointer;
+
+        @include media-sm {
+          margin-right: 20px;
+        }
+
+        @include media-xs {
+          margin-right: 10px;
+        }
     
         &:hover {
           svg {

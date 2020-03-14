@@ -1,9 +1,11 @@
 export default (() => {
+  const btnNavMinimizeToggle = document.querySelector('.header .btn-nav-toggle');
+  const radarChart = document.querySelector('.widget-radar-chart');
   const projectsList = document.querySelector('.widget-radar-chart .projects');
 
   const canvas = document.querySelector('.widgets .radar-chart');
   const c = canvas.getContext('2d');
-  const width = 420;
+  let width = null;
   const height = 350;
   canvas.setAttribute('width', width);
   canvas.setAttribute('height', height);
@@ -13,9 +15,9 @@ export default (() => {
 
   const { PI, sin, cos } = Math;
 
-  const chartRadius = 150;
+  let chartRadius = 130;
 
-  const tech = ['Html', 'Css', 'Js', 'Node', 'Database'];
+  const tech = ['Html', 'Css', 'Js', 'Node', 'Data'];
 
   const data = [
     {
@@ -162,7 +164,20 @@ export default (() => {
     drawChart(currentData);
   };
 
+  const calcValues = function() {
+    width = radarChart.clientWidth;
+    canvas.setAttribute('width', width);
+    canvas.style.width = `${width}px`;
+  };
+
+  window.innerWidth <= 400 ? chartRadius = 110 : chartRadius = 130;
+  calcValues();
   initDrawing(data);
+
+  btnNavMinimizeToggle.addEventListener('click', () => {
+    calcValues();
+    initDrawing(data);
+  });
 
   data.forEach(el => {
     projectsList.insertAdjacentHTML('beforeend', getProjectTemplate(el.name, el.color));
@@ -178,5 +193,12 @@ export default (() => {
       clearCanvas();
       initDrawing(chart);
     }
+  });
+
+  window.addEventListener('resize', () => {
+    window.innerWidth <= 400 ? chartRadius = 110 : chartRadius = 130;
+
+    calcValues();
+    initDrawing(data);
   });
 })();

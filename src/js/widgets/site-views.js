@@ -1,11 +1,13 @@
 export default (() => {
+  const btnNavMinimizeToggle = document.querySelector('.header .btn-nav-toggle');
+  const siteViews = document.querySelector('.widget-site-views');
   const btnShowYearsList = document.querySelector('.widget-site-views .btn-show-years-list');
   const yearsList = document.querySelector('.widget-site-views .years-list');
   const yearDisplay = document.querySelector('.widget-site-views .year');
 
   const canvas = document.querySelector('.widgets .site-views');
   const c = canvas.getContext('2d');
-  const width = 640;
+  let width = 640;
   const height = 390;
   canvas.setAttribute('width', width);
   canvas.setAttribute('height', height);
@@ -158,7 +160,7 @@ export default (() => {
     ],
   };
 
-  const defaultDataYear = 2019;
+  let defaultDataYear = 2019;
 
   const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 
@@ -179,7 +181,7 @@ export default (() => {
   let highestValue = 0;
 
   let rowStep = null;
-  const colStep = parseInt((width - (paddingLeft + paddingRight)) / (months.length), 10);
+  let colStep = null;
 
   const getDataValInRatio = function(value) {
     return height - parseInt((value / valueStep) * rowStep, 10) - paddingBottom;
@@ -340,6 +342,18 @@ export default (() => {
   };
 
   const initDrawing = function(year) {
+    clearCanvas();
+    drawGrid();
+    drawText();
+    drawDiagram(data[`data${year}`]);
+    drawBg();
+    drawDots(data[`data${year}`]);
+  };
+
+  const calcValues = function(year) {
+    width = siteViews.clientWidth;
+    canvas.setAttribute('width', width);
+    canvas.style.width = `${width}px`;
     highestValue = 0;
 
     data[`data${year}`].map(el => {
@@ -349,16 +363,40 @@ export default (() => {
     });
 
     rowStep = parseInt(parseInt(height - (paddingTop + paddingBottom), 10) / (parseInt(highestValue / valueStep + 1, 10)), 10);
-
-    clearCanvas();
-    drawGrid();
-    drawText();
-    drawDiagram(data[`data${year}`]);
-    drawBg();
-    drawDots(data[`data${year}`]);
+    colStep = parseInt((width - (paddingLeft + paddingRight)) / (months.length), 10);
   };
 
+  const redrawMonthNames = function() {
+    // Drawing bg paddings
+    c.beginPath();
+    const drawBottomBg = function(xStart, yStart, xEnd, yEnd) {
+      c.fillStyle = '#282a31';
+      c.fillRect(xStart, yStart, xEnd, yEnd);
+    };
+    drawBottomBg(0, height - bgHeightBottom, width, height);
+
+    // Drawing months names (axis X)
+    c.fillStyle = '#8f9094';
+    c.textAlign = 'start';
+    c.font = 'normal 12px sans-serif';
+    months.forEach((el, i) => {
+      if(i % 2 === 0) {
+        c.fillText(el, colStep * (i + 1) + (paddingLeft - colStep - 12), height - bgHeightBottom + 15);
+      }
+    });
+    c.closePath();
+  };
+
+  calcValues(defaultDataYear);
   initDrawing(defaultDataYear);
+  if(window.innerWidth <= 500) {
+    redrawMonthNames(); // draw half of months for responsiveness
+  }
+
+  btnNavMinimizeToggle.addEventListener('click', () => {
+    calcValues(defaultDataYear);
+    initDrawing(defaultDataYear);
+  });
 
   btnShowYearsList.addEventListener('click', () => {
     yearsList.classList.toggle('show-years-list');
@@ -368,13 +406,24 @@ export default (() => {
     if(e.target.nodeName === 'A') {
       e.preventDefault();
       yearDisplay.textContent = e.target.textContent;
-      initDrawing(parseInt(e.target.textContent, 10));
+      defaultDataYear = parseInt(e.target.textContent, 10);
+      calcValues(defaultDataYear);
+      initDrawing(defaultDataYear);
     }
   });
 
   window.addEventListener('click', e => {
     if(!e.target.closest('.widget-site-views .btn-show-years-list')) {
       yearsList.classList.remove('show-years-list');
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    calcValues(defaultDataYear);
+    initDrawing(defaultDataYear);
+
+    if(window.innerWidth <= 500) {
+      redrawMonthNames(); // draw half of months for responsiveness
     }
   });
 })();

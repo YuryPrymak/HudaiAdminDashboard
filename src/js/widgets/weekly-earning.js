@@ -1,7 +1,8 @@
 export default (() => {
+  const weeklyEarning = document.querySelector('.widget-weekly-earning');
   const canvas = document.querySelector('.widgets .weekly-earning');
   const c = canvas.getContext('2d');
-  const width = 310;
+  let width = 310;
   const height = 160;
   canvas.setAttribute('width', width);
   canvas.setAttribute('height', height);
@@ -45,12 +46,18 @@ export default (() => {
   const paddingTop = 15;
   const paddingBottom = 35;
 
-  const bgWidthLeft = 30;
+  const bgWidthLeft = 40;
 
-  let highestValue = 0;
+  let highestValue = null;
 
   let rowStep = null;
-  const colStep = parseInt((width - bgWidthLeft) / (data.length), 10);
+  let colStep = null;
+
+  data.map(el => {
+    if(el.value > highestValue) {
+      highestValue = el.value;
+    }
+  });
 
   const drawGrid = function() {
     c.beginPath();
@@ -79,7 +86,7 @@ export default (() => {
     c.beginPath();
     c.fillStyle = '#8f9094';
     c.textAlign = 'start';
-    c.font = 'normal 10px sans-serif';
+    c.font = 'normal 12px sans-serif';
 
     // Days (axis X)
     data.forEach((el, i) => {
@@ -123,21 +130,26 @@ export default (() => {
   };
 
   const initDrawing = function() {
-    highestValue = 0;
-
-    data.map(el => {
-      if(el.value > highestValue) {
-        highestValue = el.value;
-      }
-    });
-
-    rowStep = parseInt(parseInt(height - (paddingTop + paddingBottom), 10) / (parseInt(highestValue / valueStep + 1, 10)), 10);
-
     clearCanvas();
     drawGrid();
     drawText();
     drawBarChart();
   };
 
+  const calcValues = function() {
+    width = weeklyEarning.clientWidth;
+    canvas.setAttribute('width', width);
+    canvas.style.width = `${width}px`;
+
+    rowStep = parseInt(parseInt(height - (paddingTop + paddingBottom), 10) / (parseInt(highestValue / valueStep + 1, 10)), 10);
+    colStep = parseInt((width - bgWidthLeft) / (data.length), 10);
+  };
+
+  calcValues();
   initDrawing();
+
+  window.addEventListener('resize', () => {
+    calcValues();
+    initDrawing();
+  });
 })();

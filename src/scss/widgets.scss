@@ -1,31 +1,74 @@
-@import './src/scss/partials/_fonts';
 @import './src/scss/partials/_mixins';
+@import './src/scss/partials/_media-queries';
 
-.widgets-wrapper {
+.content-wrapper {
   width: 100%;
-  margin: 0 45px 30px 15px;
+  margin-bottom: 30px;
+  padding-right: 45px;
+  overflow: hidden;
+
+  @include media-xl {
+    padding-right: 15px;
+  }
+
+  @include media-lg {
+    padding: 0 10px;
+  }
 
   .dashboard-info {
-    height: 85px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    margin: 25px 0;
+
+    @include media-lg {
+      margin: 10px 0;
+    }
 
     .name {
       margin-left: 25px;
       font-size: 24px;
       color: #fff;
+
+      @include media-lg {
+        margin-left: 0;
+      }
     }
 
     .last-activity {
       margin-left: 30px;
       font-size: 10px;
       color: #909194;
+
+      @include media-lg {
+        font-size: 14px;
+      }
+
+      @include media-md {
+        width: 100%;
+        order: 1;
+        margin: 0;
+        margin-top: 10px;
+        text-align: center;
+      }
+
+      @include media-sm {
+        font-size: 18px;
+      }
     }
 
     .label {
       margin-left: auto;
       font-size: 14px;
       color: #fff;
+
+      @include media-lg {
+        font-size: 18px;
+      }
+
+      @include media-sm {
+        font-size: 20px;
+      }
     }
 
     .btn-add-widget {
@@ -35,6 +78,10 @@
       border: none;
       background-color: transparent;
       cursor: pointer;
+
+      @include media-lg {
+        margin-left: 10px;
+      }
 
       &:hover {
         svg {
@@ -53,11 +100,16 @@
 
   .info-cards {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin: 0 -5px 10px -5px;
 
+    @include media-lg {
+      margin: 0 -5px;
+    }
+
     .card {
-      width: calc(100% / 4);
+      width: calc(100% / 4 - 10px);
       margin: 0 5px;
       height: 100px;
       display: flex;
@@ -69,6 +121,16 @@
       background-color: #282a31;
       box-shadow: 0px 5px 7px 0px rgba(24, 24, 25, 0.75);
 
+      @include media-lg {
+        width: calc(100% / 2 - 10px);
+        margin-bottom: 10px;
+      }
+
+      @include media-xs {
+        align-items: center;
+        padding-right: 0;
+      }
+
       &::before {
         content: '';
         width: 60px;
@@ -78,6 +140,10 @@
         left: 20px;
         border-radius: 50%;
         box-shadow: 0px 2px 6px 0px rgba(24, 24, 25, 0.75);
+
+        @include media-xs {
+          display: none;
+        }
       }
 
       &:nth-child(1) {
@@ -121,6 +187,14 @@
         font-size: 10px;
         text-align: right;
         text-transform: uppercase;
+
+        @include media-lg {
+          font-size: 14px;
+        }
+
+        @include media-sm {
+          font-size: 18px;
+        }
       }
 
       .value {
@@ -136,18 +210,15 @@
   }
 
   .widgets {
-    display: grid;
-    grid-template-columns: 475px 155px 310px;
-    grid-template-rows: auto;
-    grid-gap: 10px;
-    grid-template-areas: "site-views site-views weekly-earning"
-                         "site-views site-views earn-by-country"
-                         "contacts reviews reviews"
-                         "tasks radar-chart radar-chart";
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 -5px;
 
     .widget {
       background-color: #282a31;
       box-shadow: 0px 4px 10px 0px rgba(24, 24, 25, 0.75);
+      margin: 0 5px 10px 5px;
 
       .widget-header {
         height: 50px;
@@ -158,6 +229,14 @@
         .title {
           margin-left: 20px;
           font-size: 18px;
+
+          @include media-md {
+            font-size: 20px;
+          }
+  
+          @include media-sm {
+            font-size: 24px;
+          }
         }  
   
         .widget-options {
@@ -207,6 +286,14 @@
                 color: #b7b8ba;
                 white-space: nowrap;
                 @include transition(color .1s ease-in-out);
+
+                @include media-md {
+                  font-size: 20px;
+                }
+        
+                @include media-sm {
+                  font-size: 24px;
+                }
   
                 &:hover {
                   color: #fff;
@@ -223,33 +310,102 @@
     }
 
     .widget-site-views {
-      grid-area: site-views;
+      width: 100%;
+      max-width: calc(100% - 340px);
+      height: 440px;
+      overflow: hidden;
+      position: relative;
+
+      @include media-lg {
+        max-width: 100%;
+      }
+
+      .site-views {
+        position: absolute;
+      }
     }
 
-    .widget-weekly-earning {
-      height: 215px;
-      grid-area: weekly-earning;
+    .widget-container {
+      width: 320px;
+      max-height: 440px;
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      justify-content: space-between;
+      margin: 0 5px;
+
+      @include media-lg {
+        width: 100%;
+        flex-direction: row;
+        margin: 0 0 10px 0;
+      }
+
+      @include media-xs {
+        max-height: none;
+      }
+
+      .widget-weekly-earning,
+      .widget-earn-by-country {
+        height: 215px;
+        margin: 0;
+
+        @include media-lg {
+          width: calc(50% - 10px);
+          margin: 0 5px;
+        }
+
+        @include media-md {
+          width: 100%;
+        }
+      }
+
+      .widget-weekly-earning {
+        overflow: hidden;
+        position: relative;
+
+        @include media-md {
+          margin-bottom: 10px;
+        }
+        
+        .weekly-earning { 
+          position: absolute;
+        }
+      }
+
+      .widget-earn-by-country {
+        @include media-xs {
+          height: auto;
+        }
+
+        .donut-chart {
+          @include media-md {
+            justify-content: center;
+          }
+        }
+      }
     }
 
-    .widget-earn-by-country {
-      height: 215px;
-      grid-area: earn-by-country;
-    }
+    .widget-contacts,
+    .widget-reviews,
+    .widget-tasks,
+    .widget-radar-chart {
+      width: calc(50% - 10px);
 
-    .widget-contacts {
-      grid-area: contacts;
-    }
-
-    .widget-reviews {
-      grid-area: reviews;
-    }
-
-    .widget-tasks {
-      grid-area: tasks;
+      @include media-lg {
+        width: 100%;
+      }
     }
 
     .widget-radar-chart {
-      grid-area: radar-chart;
+      position: relative;
+
+      @include media-lg {
+        height: 450px;
+      }
+
+      .radar-chart {
+        position: absolute;
+      }
     }
   }
 }

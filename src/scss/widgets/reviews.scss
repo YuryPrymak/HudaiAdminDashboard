@@ -1,12 +1,24 @@
-@import './src/scss/partials/_fonts';
 @import './src/scss/partials/_mixins';
+@import './src/scss/partials/_media-queries';
 
-.widgets-wrapper {
+.content-wrapper {
   .widget-reviews {
     background-color: #282a31;
 
     .reviews {
       padding: 0 90px 30px 20px;
+
+      @include media-lg {
+        padding: 0 20px 30px 20px
+      }
+
+      @include media-sm {
+        padding: 0 20px 20px 20px;
+      }
+
+      @include media-xs {
+        padding: 0 10px 20px 10px;
+      }
 
       .review {
         .info {
@@ -35,6 +47,14 @@
             margin-left: 25px;
             font-size: 14px;
             color: #fff;
+
+            @include media-md {
+              font-size: 16px;
+            }
+    
+            @include media-sm {
+              font-size: 18px;
+            }
           }
         }
 
@@ -76,11 +96,27 @@
           margin-bottom: 5px;
           font-size: 12px;
           color: #fff;
+
+          @include media-md {
+            font-size: 16px;
+          }
+  
+          @include media-sm {
+            font-size: 20px;
+          }
         }
 
         .btn-read-completely {
           font-size: 14px;
           color: #6fe7dd;
+
+          @include media-md {
+            font-size: 16px;
+          }
+  
+          @include media-sm {
+            font-size: 18px;
+          }
         }
       }
     }

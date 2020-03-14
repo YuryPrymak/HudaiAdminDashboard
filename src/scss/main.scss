@@ -1,4 +1,5 @@
 @import './src/scss/partials/_fonts';
+@import './src/scss/partials/_media-queries';
 
 * {
   margin: 0;
@@ -13,11 +14,6 @@ body {
   .wrapper {
     max-width: 1360px;
     margin: 0 auto;
-
-    .content-wrapper {
-      display: flex;
-      margin-top: 5px;
-    }
   }
 }
 
@@ -26,6 +22,17 @@ input,
 textarea,
 button {
   font-family: 'Roboto', sans-serif;
+}
+
+body {
+  &::-webkit-scrollbar {
+    width: 5px;
+    background-color: #33353b;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: #c2c3c5;
+  }
 }
 
 ul {
@@ -38,4 +45,32 @@ a {
 
 canvas {
   display: block;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  grid-row-gap: 5px;
+  grid-column-gap: 15px;
+  grid-template-areas: "header header"
+                       "nav content";
+
+  @include media-lg {
+    grid-template-areas: "header header"
+                         "content content";
+    grid-gap: 0;
+  }
+
+  .header {
+    grid-area: header;
+  }
+  
+  .nav {
+    grid-area: nav;
+  }
+  
+  .content-wrapper {
+    grid-area: content;
+  }
 }

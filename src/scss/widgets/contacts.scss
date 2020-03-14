@@ -1,10 +1,14 @@
-@import './src/scss/partials/_fonts';
 @import './src/scss/partials/_mixins';
+@import './src/scss/partials/_media-queries';
 
-.widgets-wrapper {
+.content-wrapper {
   .widget-contacts {
     padding-bottom: 30px;
     background-color: #282a31;
+
+    @include media-sm {
+      padding-bottom: 20px;
+    }
 
     .contacts {
       height: 350px;
@@ -12,6 +16,11 @@
       position: relative;
       padding-right: 5px;
       overflow: auto;
+
+      @include media-xs {
+        height: 400px;
+        margin: 0 10px;
+      }
 
       &::before {
         content: 'Contacts not found';
@@ -40,6 +49,10 @@
         position: relative;
         border-bottom: 2px solid #33353b;
 
+        @include media-xs {
+          height: 80px;
+        }
+
         .photo {
           width: 50px;
           height: 50px;
@@ -50,10 +63,23 @@
         .info {
           margin-left: 10px;
 
+          @include media-sm {
+            margin-left: 20px;
+          }
+
           .name {
             position: relative;
             font-size: 14px;
             color: #fff;
+            white-space: nowrap;
+
+            @include media-md {
+              font-size: 16px;
+            }
+    
+            @include media-sm {
+              font-size: 20px;
+            }
 
             &::after {
               content: '';
@@ -64,12 +90,29 @@
               right: -13px;
               border-radius: 50%;
               background-color: #1d1d23;
+
+              @include media-md {
+                top: 7px;
+              }
+      
+              @include media-sm {
+                top: 10px;
+              }
             }
           }
 
           .company {
             font-size: 12px;
             color: #fff;
+            white-space: nowrap;
+
+            @include media-md {
+              font-size: 14px;
+            }
+    
+            @include media-sm {
+              font-size: 16px;
+            }
           }
         }
 
@@ -80,6 +123,13 @@
           border: none;
           background: transparent;
           cursor: pointer;
+
+          @include media-xs {
+            width: 35px;
+            height: 35px;
+            position: absolute;
+            right: 5px;
+          }
 
           &:hover {
             svg {
@@ -95,6 +145,10 @@
 
         .btn-send-message {
           margin-left: auto;
+
+          @include media-xs {
+            top: 2px;
+          }
         
           svg {
             width: 95%;
@@ -104,6 +158,11 @@
 
         .btn-send-mail {
           margin: 0 10px;
+
+          @include media-xs {
+            bottom: 2px;
+            margin: 0;
+          }
 
           svg {
             width: 80%;
@@ -126,6 +185,12 @@
           font-weight: 500;
           text-align: center;
           text-shadow: 0px 2px 1px rgba(24, 24, 25, 0.75);
+
+          @include media-sm {
+            width: 24px;
+            height: 24px;
+            font-size: 18px;
+          }
         }
       }
 
@@ -166,9 +231,23 @@
         font-size: 18px;
         color: #57595e;
 
+        @include media-sm {
+          width: 100%;
+          margin: 0 20px;
+          font-size: 22px;
+        }
+
+        @include media-xs {
+          margin: 0 10px;
+        }
+
         &::placeholder {
           font-size: 18px;
           color: #57595e;
+
+          @include media-sm {
+            font-size: 22px;
+          }
         }
       }
 
@@ -181,6 +260,14 @@
         border-radius: 5px;
         background-color: transparent;
         cursor: pointer;
+
+        @include media-sm {
+          right: 20px;
+        }
+
+        @include media-xs {
+          right: 10px;
+        }
     
         &:hover {
           svg {

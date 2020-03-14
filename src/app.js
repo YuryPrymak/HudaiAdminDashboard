@@ -1,6 +1,7 @@
 import './js/main';
 import './js/search-form';
 import './js/nav';
+import './js/mobile-nav';
 import './js/widgets/site-views';
 import './js/widgets/weekly-earning';
 import './js/widgets/earn-by-country';

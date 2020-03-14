@@ -1,7 +1,7 @@
-@import './src/scss/partials/_fonts';
 @import './src/scss/partials/_mixins';
+@import './src/scss/partials/_media-queries';
 
-.widgets-wrapper {
+.content-wrapper {
   .widget-radar-chart {
     padding-bottom: 30px;
     background-color: #282a31;
@@ -11,19 +11,31 @@
     }
 
     .projects {
+      width: calc(100% - 20px);
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-around;
+      position: absolute;
+      bottom: 30px;
       margin: 0 10px;
 
       li {
         .btn-choice-project {
           display: block;
           position: relative;
-          margin: 0 10px;
+          margin: 0 10px 10px 10px;
           padding-left: 15px;
           font-size: 12px;
           color: #d8d8d9;
           cursor: pointer;
+
+          @include media-md {
+            font-size: 16px;
+          }
+  
+          @include media-sm {
+            font-size: 18px;
+          }
 
           .color-id {
             width: 10px;

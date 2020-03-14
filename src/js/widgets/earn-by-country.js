@@ -64,11 +64,14 @@ export default (() => {
     startPost = endValue;
   };
 
-  calcOtherValue();
+  const initDrawing = function() {
+    calcOtherValue();
+    for(let i = 0; i < data.length; i++) {
+      drawPart(i);
+      infoCountry[i].textContent = data[i].country;
+      infoValue[i].textContent = `- ${data[i].value}%`;
+    }
+  };
 
-  for(let i = 0; i < data.length; i++) {
-    drawPart(i);
-    infoCountry[i].textContent = data[i].country;
-    infoValue[i].textContent = `- ${data[i].value}%`;
-  }
+  initDrawing();
 })();
