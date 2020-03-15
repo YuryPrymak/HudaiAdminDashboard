@@ -4,7 +4,6 @@
 .content-wrapper {
   .widget-contacts {
     padding-bottom: 30px;
-    background-color: #282a31;
 
     @include media-sm {
       padding-bottom: 20px;
@@ -28,7 +27,7 @@
         position: absolute;
         top: 10px;
         left: calc(50%);
-        color: #b1b2b5;
+        color: var(--text-color-two);
         font-size: 18px;
         @include transform(translateX(-50%));
       }
@@ -47,7 +46,7 @@
         display: flex;
         align-items: center;
         position: relative;
-        border-bottom: 2px solid #33353b;
+        border-bottom: 2px solid var(--border-color);
 
         @include media-xs {
           height: 80px;
@@ -70,7 +69,7 @@
           .name {
             position: relative;
             font-size: 14px;
-            color: #fff;
+            color: var(--text-color-one);
             white-space: nowrap;
 
             @include media-md {
@@ -103,7 +102,7 @@
 
           .company {
             font-size: 12px;
-            color: #fff;
+            color: var(--text-color-one);
             white-space: nowrap;
 
             @include media-md {
@@ -133,12 +132,12 @@
 
           &:hover {
             svg {
-              fill: #fff;
+              fill: var(--svg-icon-color-hover);
             }
           }
 
           svg {
-            fill: #c2c3c5;
+            fill: var(--svg-icon-color);
             @include transition(fill .1s ease-in-out);
           }
         }
@@ -179,7 +178,7 @@
           left: 40px;
           padding-top: 1px;
           border-radius: 50%;
-          background-color: #e02865;
+          background-color: #ff0055;
           color: #fff;
           font-size: 14px;
           font-weight: 500;
@@ -225,11 +224,11 @@
         width: 70%;
         height: 40px;
         padding: 0 40px 0 7px;
-        border: 2px solid #212328;
+        border: 2px solid var(--border-color-elems);
         border-radius: 5px;
-        background-color: #282a31;
+        background-color: var(--input-bg);
         font-size: 18px;
-        color: #57595e;
+        color: var(--text-color-three);
 
         @include media-sm {
           width: 100%;
@@ -243,7 +242,7 @@
 
         &::placeholder {
           font-size: 18px;
-          color: #57595e;
+          color: var(--text-color-three);
 
           @include media-sm {
             font-size: 22px;
@@ -271,7 +270,7 @@
     
         &:hover {
           svg {
-            fill: #fff;
+            fill: var(--svg-icon-color-hover);
           }
         }
     
@@ -279,7 +278,7 @@
           width: 65%;
           height: 65%;
           margin: 3px 0 0 2px;
-          fill: #44464c;
+          fill: var(--svg-icon-color);
           @include transition(fill .1s ease-in-out);
         }
       }

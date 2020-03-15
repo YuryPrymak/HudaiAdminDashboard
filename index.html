@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="theme-dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +22,7 @@
         </button>
       </div>
       <form class="search-form" action="/" method="GET">
-        <input class="search-input" type="text" name="search-request" placeholder="Type to search ...">
+        <input class="search-input" type="text" name="search-request" placeholder="Type to search ..." autocomplete="off">
       </form>
       <button class="btn-search-input-toggle">
         <svg xmlns="http://www.w3.org/2000/svg" width="29.34" height="29.344" viewBox="0 0 29.34 29.344" preserveAspectRatio="none">
@@ -34,6 +34,11 @@
           <path d="M1107.63,50.438c-1.77-1.527-3.03-5.586-3.03-10.353a8.245,8.245,0,0,0-5.55-7.788,2.741,2.741,0,0,0-5.41,0,8.245,8.245,0,0,0-5.55,7.788c0,4.766-1.26,8.825-3.03,10.353a4.513,4.513,0,0,0-1.55,3.4,2.75,2.75,0,0,0,2.75,2.751h7.34a2.75,2.75,0,1,0,5.5,0h7.33a2.75,2.75,0,0,0,2.75-2.751A4.513,4.513,0,0,0,1107.63,50.438Zm-21.37,3.4a1.751,1.751,0,0,1,.6-1.319c2.46-2.123,3.99-6.888,3.99-12.433a5.5,5.5,0,1,1,11,0c0,5.546,1.52,10.31,3.98,12.434a1.75,1.75,0,0,1,.6,1.318h-20.17Z" transform="translate(-1083.5 -30)"/>
         </svg>
         <span class="notification-counter">7</span>
+      </button>
+      <button class="btn-themes-toggle">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" preserveAspectRatio="none">
+          <path d="M12 18q2.484 0 4.242-1.758t1.758-4.242-1.758-4.242-4.242-1.758v12zM20.016 15.328v4.688h-4.688l-3.328 3.281-3.328-3.281h-4.688v-4.688l-3.281-3.328 3.281-3.328v-4.688h4.688l3.328-3.281 3.328 3.281h4.688v4.688l3.281 3.328z"></path>
+        </svg>
       </button>
       <div class="user-info">
         <img class="user-photo" src="/src/img/header/user.png" alt="Person">
@@ -515,7 +520,7 @@
             </li>
           </ul>
           <div class="search-contact">
-            <input class="input-search-contact" type="text" placeholder="Search contact ...">
+            <input class="input-search-contact" type="text" placeholder="Search contact ..." autocomplete="off">
             <button class="btn-clear">
               <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" preserveAspectRatio="none">
                 <path d="M18.984 6.422l-5.578 5.578 5.578 5.578-1.406 1.406-5.578-5.578-5.578 5.578-1.406-1.406 5.578-5.578-5.578-5.578 1.406-1.406 5.578 5.578 5.578-5.578z"></path>
@@ -639,7 +644,7 @@
             </li>
           </ul>
           <div class="add-new-task">
-            <input class="input-add-new-task" type="text" maxlength="23" placeholder="Add a new task ...">
+            <input class="input-add-new-task" type="text" maxlength="23" placeholder="Add a new task ..." autocomplete="off">
             <button class="btn-add-new-task">
               <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" preserveAspectRatio="none">
                 <path d="M24 18h-6v6h-4v-6h-6v-4h6v-6h4v6h6v4z"></path>

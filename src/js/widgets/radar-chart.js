@@ -1,7 +1,20 @@
 export default (() => {
   const btnNavMinimizeToggle = document.querySelector('.header .btn-nav-toggle');
+  const btnThemesToggle = document.querySelector('.header .btn-themes-toggle');
   const radarChart = document.querySelector('.widget-radar-chart');
   const projectsList = document.querySelector('.widget-radar-chart .projects');
+
+  const darkTheme = {
+    bgColor: '#282a31',
+    gridColor: '#33353b',
+  };
+
+  const lightTheme = {
+    bgColor: '#fff',
+    gridColor: '#e1e2e3',
+  };
+
+  let defaultTheme = darkTheme;
 
   const canvas = document.querySelector('.widgets .radar-chart');
   const c = canvas.getContext('2d');
@@ -11,7 +24,7 @@ export default (() => {
   canvas.setAttribute('height', height);
   canvas.style.width = `${width}px`;
   canvas.style.height = `${height}px`;
-  canvas.style.backgroundColor = '#282a31';
+  canvas.style.backgroundColor = defaultTheme.bgColor;
 
   const { PI, sin, cos } = Math;
 
@@ -61,9 +74,9 @@ export default (() => {
     </li>`;
   };
 
-  const drawSections = function() {
+  const drawSections = function({ gridColor }) {
     c.beginPath();
-    c.strokeStyle = '#494b51';
+    c.strokeStyle = gridColor;
     c.lineWidth = '2';
 
     for(let i = 0; i < tech.length; i++) {
@@ -75,7 +88,7 @@ export default (() => {
     c.closePath();
   };
 
-  const drawGrid = function() {
+  const drawGrid = function({ gridColor }) {
     const gridParts = 5;
 
     const getGridX = function(i, j) {
@@ -89,7 +102,7 @@ export default (() => {
     };
 
     c.beginPath();
-    c.strokeStyle = '#494b51';
+    c.strokeStyle = gridColor;
     c.lineWidth = '2';
 
     for(let i = 0; i < gridParts; i++) {
@@ -107,7 +120,7 @@ export default (() => {
 
   const drawText = function() {
     c.beginPath();
-    c.fillStyle = '#d8d8d9';
+    c.fillStyle = '#8f9094';
     c.font = 'normal 12px sans-serif';
 
     tech.forEach((text, i) => {
@@ -157,9 +170,9 @@ export default (() => {
     c.closePath();
   };
 
-  const initDrawing = function(currentData) {
-    drawSections();
-    drawGrid();
+  const initDrawing = function(currentData, theme) {
+    drawSections(theme);
+    drawGrid(theme);
     drawText();
     drawChart(currentData);
   };
@@ -172,11 +185,11 @@ export default (() => {
 
   window.innerWidth <= 400 ? chartRadius = 110 : chartRadius = 130;
   calcValues();
-  initDrawing(data);
+  initDrawing(data, defaultTheme);
 
   btnNavMinimizeToggle.addEventListener('click', () => {
     calcValues();
-    initDrawing(data);
+    initDrawing(data, defaultTheme);
   });
 
   data.forEach(el => {
@@ -191,14 +204,21 @@ export default (() => {
       chart.push(...data, data[btnIndex]);
       chart.splice(btnIndex, 1);
       clearCanvas();
-      initDrawing(chart);
+      initDrawing(chart, defaultTheme);
     }
+  });
+
+  btnThemesToggle.addEventListener('click', () => {
+    defaultTheme === darkTheme ? defaultTheme = lightTheme : defaultTheme = darkTheme;
+    canvas.style.backgroundColor = defaultTheme.bgColor;
+    clearCanvas();
+    initDrawing(data, defaultTheme);
   });
 
   window.addEventListener('resize', () => {
     window.innerWidth <= 400 ? chartRadius = 110 : chartRadius = 130;
 
     calcValues();
-    initDrawing(data);
+    initDrawing(data, defaultTheme);
   });
 })();

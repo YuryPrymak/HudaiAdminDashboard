@@ -7,8 +7,8 @@
   display: flex;
   position: relative;
   padding-right: 45px;
-  background-color: #24262d;
-  box-shadow: 0 5px 7px 0 rgba(24, 24, 25, 0.75);
+  background-color: var(--second-bg-color);
+  box-shadow: 0 5px 7px 0 var(--box-shadow);
 
   @include media-xl {
     padding-right: 15px;
@@ -25,7 +25,7 @@
     align-items: center;
     position: relative;
     margin-right: auto;
-    background-color: #212228;
+    background-color: var(--main-bg-color);
 
     @include media-lg {
       min-width: 100%;
@@ -38,7 +38,7 @@
       display: block;
       position: relative;
       padding-left: 60px;
-      color: #fff;
+      color: var(--text-color-one);
       font-size: 36px;
       line-height: 80px;
 
@@ -68,14 +68,14 @@
 
       &:hover {
         svg {
-          fill: #fff;
+          fill: var(--svg-icon-color-hover);
         }
       }
       
       svg {
         width: 100%;
         height: 100%;
-        fill: #b7b8ba;
+        fill: var(--svg-icon-color);
         @include transition(fill .1s ease-in-out);
       }
     }
@@ -94,11 +94,11 @@
       height: 40px;
       display: none;
       padding: 0 7px;
-      border: 2px solid #212328;
+      border: 2px solid var(--border-color-elems);
       border-radius: 5px;
-      background-color: #282a31;
+      background-color: var(--input-bg);
       font-size: 18px;
-      color: #57595e;
+      color: var(--text-color-three);
 
       @include media-sm {
         font-size: 22px;
@@ -106,7 +106,7 @@
 
       &::placeholder {
         font-size: 18px;
-        color: #57595e;
+        color: var(--text-color-three);
 
         @include media-sm {
           font-size: 22px;
@@ -116,7 +116,7 @@
   }
 
   .show-search-input {
-    @include transform(translateX(-50%) translateY(20px));
+    @include transform(translateX(-50%) translateY(100px));
 
     .search-input {
       display: block;
@@ -127,7 +127,7 @@
     width: 80px;
     height: 100%;
     border: none;
-    border-left: 2px solid #45474d;
+    border-left: 2px solid var(--border-color);
     background-color: transparent;
     cursor: pointer;
 
@@ -137,7 +137,7 @@
 
     &:hover {
       svg {
-        fill: #fff;
+        fill: var(--svg-icon-color-hover);
       }
     }
 
@@ -145,7 +145,7 @@
       width: 30px;
       height: 30px;
       margin-top: 5px;
-      fill: #b7b8ba;
+      fill: var(--svg-icon-color);
       @include transition(fill .1s ease-in-out);
     }
   }
@@ -155,7 +155,7 @@
     height: 80px;
     position: relative;
     border: none;
-    border-left: 2px solid #45474d;
+    border-left: 2px solid var(--border-color);
     background-color: transparent;
     cursor: pointer;
 
@@ -170,7 +170,7 @@
 
     &:hover {
       svg {
-        fill: #fff;
+        fill: var(--svg-icon-color-hover);
       }
     }
 
@@ -178,7 +178,7 @@
       width: 26px;
       height: 30px;
       margin-top: 5px;
-      fill: #b7b8ba;
+      fill: var(--svg-icon-color);
       @include transition(fill .1s ease-in-out);
     }
 
@@ -190,7 +190,7 @@
       left: 42px;
       padding-top: 2px;
       border-radius: 50%;
-      background-color: #e02865;
+      background-color: #ff0055;
       color: #fff;
       font-size: 16px;
       font-weight: 500;
@@ -208,11 +208,39 @@
     }
   }
 
+  .btn-themes-toggle {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    border: none;
+    border-left: 2px solid var(--border-color);
+    background-color: transparent;
+    cursor: pointer;
+
+    @include media-lg {
+      display: none;
+    }
+
+    &:hover {
+      svg {
+        fill: var(--svg-icon-color-hover);
+      }
+    }
+
+    svg {
+      width: 30px;
+      height: 30px;
+      margin-top: 5px;
+      fill: var(--svg-icon-color);
+      @include transition(fill .1s ease-in-out);
+    }
+  }
+
   .user-info {
     display: flex;
     align-items: center;
     padding-left: 20px;
-    border-left: 2px solid #45474d;
+    border-left: 2px solid var(--border-color);
 
     @include media-lg {
       display: none;
@@ -235,7 +263,7 @@
       .user-name,
       .user-post {
         font-size: 12px;
-        color: #b7b8ba;
+        color: var(--text-color-two);
 
         @include media-lg {
           font-size: 18px;
@@ -274,10 +302,10 @@
         @include transition(border .1s ease-in-out);
     
         &:hover {
-          border: 2px solid #45474d;
+          border: 2px solid var(--border-color);
   
           svg {
-            fill: #fff;
+            fill: var(--svg-icon-color-hover);
           }
         }
     
@@ -285,7 +313,7 @@
           width: 24px;
           height: 22px;
           margin-top: 5px;
-          fill: #b7b8ba;
+          fill: var(--svg-icon-color);
           @include transition(fill .1s ease-in-out);
         }
       }
@@ -296,8 +324,8 @@
         top: 40px;
         right: 0;
         border-radius: 5px;
-        background-color: #282a31;
-        box-shadow: 0 0 7px 0 rgba(24, 24, 25, 0.75);
+        background-color: var(--widget-bg);
+        box-shadow: 0 0 7px 0 var(--box-shadow);
 
         li {
           margin: 10px 0;
@@ -306,7 +334,7 @@
             display: block;
             padding: 0 15px;
             font-size: 18px;
-            color: #b7b8ba;
+            color: var(--text-color-two);
             white-space: nowrap;
             @include transition(color .1s ease-in-out);
 
@@ -319,7 +347,7 @@
             }
 
             &:hover {
-              color: #fff;
+              color: var(--text-color-two-hover);
             }
           }
         }
@@ -346,14 +374,14 @@
     
     &:hover {
       svg {
-        fill: #fff;
+        fill: var(--svg-icon-color-hover);
       }
     }
 
     svg {
       width: 100%;
       height: 100%;
-      fill: #b7b8ba;;
+      fill: var(--svg-icon-color);
       @include transition(fill .1s ease-in-out);
 
       rect {
@@ -405,6 +433,16 @@
     height: 220px;
   }
 
+  .logo-wrapper {
+    .logo {
+      padding: 0;
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+
   .search-form {
     position: static;
     margin-bottom: 5px;
@@ -417,6 +455,20 @@
 
     .search-input {
       display: block;
+    }
+  }
+
+  .btn-themes-toggle {
+    width: 30px;
+    height: 30px;
+    display: block;
+    position: absolute;
+    top: 25px;
+    right: 60px;
+    border: none;
+
+    svg {
+      margin: 0;
     }
   }
 

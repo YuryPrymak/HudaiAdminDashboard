@@ -1,14 +1,30 @@
 export default (() => {
+  const btnThemesToggle = document.querySelector('.header .btn-themes-toggle');
   const weeklyEarning = document.querySelector('.widget-weekly-earning');
   const canvas = document.querySelector('.widgets .weekly-earning');
   const c = canvas.getContext('2d');
+
+  const darkTheme = {
+    bgColor: '#282a31',
+    gridColor: '#33353b',
+    chartBg: '#202126',
+  };
+
+  const lightTheme = {
+    bgColor: '#fff',
+    gridColor: '#e1e2e3',
+    chartBg: '#787f91',
+  };
+
+  let defaultTheme = darkTheme;
+
   let width = 310;
   const height = 160;
   canvas.setAttribute('width', width);
   canvas.setAttribute('height', height);
   canvas.style.width = `${width}px`;
   canvas.style.height = `${height}px`;
-  canvas.style.backgroundColor = '#282a31';
+  canvas.style.backgroundColor = defaultTheme.bgColor;
 
   const data = [
     {
@@ -59,9 +75,9 @@ export default (() => {
     }
   });
 
-  const drawGrid = function() {
+  const drawGrid = function({ gridColor, bgColor }) {
     c.beginPath();
-    c.strokeStyle = '#33353b';
+    c.strokeStyle = gridColor;
     c.lineWidth = '1';
     c.setLineDash([2, 2]);
 
@@ -74,7 +90,7 @@ export default (() => {
 
     // Drawing bg paddings
     const drawBg = function(xStart, yStart, xEnd, yEnd) {
-      c.fillStyle = '#282a31';
+      c.fillStyle = bgColor;
       c.fillRect(xStart, yStart, xEnd, yEnd);
     };
 
@@ -101,25 +117,27 @@ export default (() => {
     c.closePath();
   };
 
-  const drawBarChart = function() {
+  const drawBarChart = function({ chartBg }) {
     c.beginPath();
+    c.save();
 
     for(let i = 0; i < data.length; i++) {
       const valInRatio = height - parseInt((data[i].value / valueStep) * rowStep, 10) - paddingBottom;
 
       c.lineWidth = '15';
-      c.strokeStyle = '#202126';
+      c.strokeStyle = chartBg;
       c.setLineDash([0]);
       c.shadowOffsetX = 2;
       c.shadowOffsetY = 3;
       c.shadowBlur = 3;
-      c.shadowColor = '#101114';
+      c.shadowColor = chartBg;
 
       c.moveTo(colStep * i + bgWidthLeft + 20, height - paddingBottom);
       c.lineTo(colStep * i + bgWidthLeft + 20, valInRatio);
     }
 
     c.stroke();
+    c.restore();
     c.closePath();
   };
 
@@ -129,11 +147,11 @@ export default (() => {
     c.closePath();
   };
 
-  const initDrawing = function() {
+  const initDrawing = function(theme) {
     clearCanvas();
-    drawGrid();
+    drawGrid(theme);
     drawText();
-    drawBarChart();
+    drawBarChart(theme);
   };
 
   const calcValues = function() {
@@ -146,10 +164,16 @@ export default (() => {
   };
 
   calcValues();
-  initDrawing();
+  initDrawing(defaultTheme);
+
+  btnThemesToggle.addEventListener('click', () => {
+    defaultTheme === darkTheme ? defaultTheme = lightTheme : defaultTheme = darkTheme;
+    canvas.style.backgroundColor = defaultTheme.bgColor;
+    initDrawing(defaultTheme);
+  });
 
   window.addEventListener('resize', () => {
     calcValues();
-    initDrawing();
+    initDrawing(defaultTheme);
   });
 })();

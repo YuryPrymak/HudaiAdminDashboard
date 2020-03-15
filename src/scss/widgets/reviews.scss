@@ -3,8 +3,6 @@
 
 .content-wrapper {
   .widget-reviews {
-    background-color: #282a31;
-
     .reviews {
       padding: 0 90px 30px 20px;
 
@@ -46,7 +44,7 @@
           .time {
             margin-left: 25px;
             font-size: 14px;
-            color: #fff;
+            color: var(--text-color-one);
 
             @include media-md {
               font-size: 16px;
@@ -95,7 +93,7 @@
         .text {
           margin-bottom: 5px;
           font-size: 12px;
-          color: #fff;
+          color: var(--text-color-one);
 
           @include media-md {
             font-size: 16px;

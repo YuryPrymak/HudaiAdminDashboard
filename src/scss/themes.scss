@@ -1,0 +1,47 @@
+.theme-dark {
+  --main-bg-color: #212228;
+  --second-bg-color: #24262d;
+  --widget-bg: #282a31;
+  --input-bg: #282a31;
+  --icon-bg: #3d404a;
+
+  --text-color-one: #fff;
+  --text-color-two: #c8c9ca;
+  --text-color-two-hover: #fff;
+  --text-color-three: #57595e;
+  --text-color-four: #909194;
+
+  --svg-icon-color: #c2c3c5;
+  --svg-icon-color-hover: #fff;
+
+  --border-color: #35373d;
+  --border-color-elems: #212228;
+
+  --checkbox-bg: #1e1f24;
+
+  --box-shadow: rgba(24, 24, 25, 0.75);
+}
+
+.theme-light {
+  --main-bg-color: #f6f9fa;
+  --second-bg-color: #fff;
+  --widget-bg: #fff;
+  --input-bg: #fff;
+  --icon-bg: #5e636e;
+
+  --text-color-one: #5e636e;
+  --text-color-two: #5e636e;
+  --text-color-two-hover: #28dcbc;
+  --text-color-three: #5e636e;
+  --text-color-four: #5e636e;
+
+  --svg-icon-color: #a3a3a3;
+  --svg-icon-color-hover: #28dcbc;
+
+  --border-color: #a3a3a3;
+  --border-color-elems: #a3a3a3;
+
+  --checkbox-bg: #5e636e;
+
+  --box-shadow: rgba(194, 195, 197, 0.75);
+}

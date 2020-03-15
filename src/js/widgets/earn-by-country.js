@@ -1,6 +1,17 @@
 export default (() => {
+  const btnThemesToggle = document.querySelector('.header .btn-themes-toggle');
   const infoCountry = document.querySelectorAll('.widget-earn-by-country .country');
   const infoValue = document.querySelectorAll('.widget-earn-by-country .value');
+
+  const darkTheme = {
+    bgColor: '#282a31',
+  };
+
+  const lightTheme = {
+    bgColor: '#fff',
+  };
+
+  let defaultTheme = darkTheme;
 
   const canvas = document.querySelector('.widgets .earn-by-country');
   const c = canvas.getContext('2d');
@@ -9,7 +20,7 @@ export default (() => {
   canvas.setAttribute('height', widthAndHeight);
   canvas.style.width = `${widthAndHeight}px`;
   canvas.style.height = `${widthAndHeight}px`;
-  canvas.style.backgroundColor = '#282a31';
+  canvas.style.backgroundColor = defaultTheme.bgColor;
 
   const { PI } = Math;
 
@@ -74,4 +85,9 @@ export default (() => {
   };
 
   initDrawing();
+
+  btnThemesToggle.addEventListener('click', () => {
+    defaultTheme === darkTheme ? defaultTheme = lightTheme : defaultTheme = darkTheme;
+    canvas.style.backgroundColor = defaultTheme.bgColor;
+  });
 })();

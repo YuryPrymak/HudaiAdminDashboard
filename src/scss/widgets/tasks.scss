@@ -4,7 +4,6 @@
 .content-wrapper {
   .widget-tasks {
     padding-bottom: 30px;
-    background-color: #282a31;
 
     @include media-sm {
       padding-bottom: 20px;
@@ -35,7 +34,7 @@
         align-items: center;
         position: relative;
         padding: 10px 0;
-        border-bottom: 2px solid #33353b;
+        border-bottom: 2px solid var(--border-color);
 
         @include media-md {
           min-height: 80px;
@@ -48,7 +47,7 @@
           height: 20px;
           border: none;
           border-radius: 5px;
-          background-color: #1e1f24;
+          background-color: var(--checkbox-bg);
           cursor: pointer;
 
           @include media-sm {
@@ -59,7 +58,7 @@
         }
 
         .checkbox-toggle {
-          background: url('/src/img/widget-tasks/checkmark.svg') center / 14px no-repeat, #1e1f24;
+          background: url('/src/img/widget-tasks/checkmark.svg') center / 14px no-repeat, var(--checkbox-bg);
         }
 
         .info {
@@ -68,7 +67,7 @@
           .title {
             position: relative;
             font-size: 18px;
-            color: #fff;
+            color: var(--text-color-one);
 
             @include media-md {
               font-size: 20px;
@@ -81,7 +80,7 @@
 
           .name {
             font-size: 14px;
-            color: #57595e;
+            color: var(--text-color-four);
 
             @include media-md {
               font-size: 16px;
@@ -116,14 +115,14 @@
 
           &:hover {
             svg {
-              fill: #fff;
+              fill: var(--svg-icon-color-hover);
             }
           }
         
           svg {
             width: 100%;
             height: 100%;
-            fill: #c2c3c5;
+            fill: var(--svg-icon-color);
             @include transition(fill .1s ease-in-out);
           }
         }
@@ -139,11 +138,11 @@
         width: 70%;
         height: 40px;
         padding: 0 7px;
-        border: 2px solid #212328;
+        border: 2px solid var(--border-color-elems);
         border-radius: 5px;
-        background-color: #282a31;
+        background-color: var(--input-bg);
         font-size: 18px;
-        color: #57595e;
+        color: var(--text-color-three);
 
         @include media-sm {
           width: 100%;
@@ -157,7 +156,7 @@
 
         &::placeholder {
           font-size: 18px;
-          color: #57595e;
+          color: var(--text-color-three);
 
           @include media-sm {
             font-size: 22px;
@@ -170,7 +169,7 @@
         width: 40px;
         height: 40px;
         margin-left: 5px;
-        border: 2px solid #212328;
+        border: 2px solid var(--border-color-elems);
         border-radius: 5px;
         background-color: transparent;
         cursor: pointer;
@@ -185,14 +184,14 @@
     
         &:hover {
           svg {
-            fill: #fff;
+            fill: var(--svg-icon-color-hover);
           }
         }
     
         svg {
           width: 100%;
           height: 100%;
-          fill: #44464c;
+          fill: var(--svg-icon-color);
           @include transition(fill .1s ease-in-out);
         }
       }

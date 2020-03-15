@@ -1,9 +1,24 @@
 export default (() => {
   const btnNavMinimizeToggle = document.querySelector('.header .btn-nav-toggle');
+  const btnThemesToggle = document.querySelector('.header .btn-themes-toggle');
   const siteViews = document.querySelector('.widget-site-views');
   const btnShowYearsList = document.querySelector('.widget-site-views .btn-show-years-list');
   const yearsList = document.querySelector('.widget-site-views .years-list');
   const yearDisplay = document.querySelector('.widget-site-views .year');
+
+  const darkTheme = {
+    bgColor: '#282a31',
+    gridColor: '#33353b',
+    dotColor: '#fff',
+  };
+
+  const lightTheme = {
+    bgColor: '#fff',
+    gridColor: '#e1e2e3',
+    dotColor: '#f0134d',
+  };
+
+  let defaultTheme = darkTheme;
 
   const canvas = document.querySelector('.widgets .site-views');
   const c = canvas.getContext('2d');
@@ -13,7 +28,7 @@ export default (() => {
   canvas.setAttribute('height', height);
   canvas.style.width = `${width}px`;
   canvas.style.height = `${height}px`;
-  canvas.style.backgroundColor = '#282a31';
+  canvas.style.backgroundColor = defaultTheme.bgColor;
 
   const { PI } = Math;
 
@@ -191,9 +206,9 @@ export default (() => {
     return parseInt(colStep * month, 10) + paddingLeft - colStep + parseInt((colStep / 30) * day, 10);
   };
 
-  const drawGrid = function() {
+  const drawGrid = function({ gridColor, bgColor }) {
     c.beginPath();
-    c.strokeStyle = '#33353b';
+    c.strokeStyle = gridColor;
     c.lineWidth = '1';
     c.setLineDash([2, 2]);
 
@@ -213,7 +228,7 @@ export default (() => {
 
     // Drawing bg paddings
     const drawBg = function(xStart, yStart, xEnd, yEnd) {
-      c.fillStyle = '#282a31';
+      c.fillStyle = bgColor;
       c.fillRect(xStart, yStart, xEnd, yEnd);
     };
 
@@ -297,7 +312,7 @@ export default (() => {
     c.closePath();
   };
 
-  const drawDots = function(currentData) {
+  const drawDots = function(currentData, { dotColor }) {
     const draw = function(x, y) {
       c.beginPath();
       c.strokeStyle = '#28dcbc';
@@ -306,8 +321,8 @@ export default (() => {
       c.closePath();
 
       c.beginPath();
-      c.strokeStyle = '#fff';
-      c.fillStyle = '#fff';
+      c.strokeStyle = dotColor;
+      c.fillStyle = dotColor;
       c.arc(x, y, 2, 0, PI * 2, false);
       c.fill();
       c.stroke();
@@ -341,13 +356,13 @@ export default (() => {
     c.closePath();
   };
 
-  const initDrawing = function(year) {
+  const initDrawing = function(year, theme) {
     clearCanvas();
-    drawGrid();
+    drawGrid(theme);
     drawText();
     drawDiagram(data[`data${year}`]);
     drawBg();
-    drawDots(data[`data${year}`]);
+    drawDots(data[`data${year}`], theme);
   };
 
   const calcValues = function(year) {
@@ -366,11 +381,11 @@ export default (() => {
     colStep = parseInt((width - (paddingLeft + paddingRight)) / (months.length), 10);
   };
 
-  const redrawMonthNames = function() {
+  const redrawMonthNames = function({ bgColor }) {
     // Drawing bg paddings
     c.beginPath();
     const drawBottomBg = function(xStart, yStart, xEnd, yEnd) {
-      c.fillStyle = '#282a31';
+      c.fillStyle = bgColor;
       c.fillRect(xStart, yStart, xEnd, yEnd);
     };
     drawBottomBg(0, height - bgHeightBottom, width, height);
@@ -388,14 +403,14 @@ export default (() => {
   };
 
   calcValues(defaultDataYear);
-  initDrawing(defaultDataYear);
+  initDrawing(defaultDataYear, defaultTheme);
   if(window.innerWidth <= 500) {
-    redrawMonthNames(); // draw half of months for responsiveness
+    redrawMonthNames(defaultTheme); // draw half of months for responsiveness
   }
 
   btnNavMinimizeToggle.addEventListener('click', () => {
     calcValues(defaultDataYear);
-    initDrawing(defaultDataYear);
+    initDrawing(defaultDataYear, defaultTheme);
   });
 
   btnShowYearsList.addEventListener('click', () => {
@@ -408,7 +423,16 @@ export default (() => {
       yearDisplay.textContent = e.target.textContent;
       defaultDataYear = parseInt(e.target.textContent, 10);
       calcValues(defaultDataYear);
-      initDrawing(defaultDataYear);
+      initDrawing(defaultDataYear, defaultTheme);
+    }
+  });
+
+  btnThemesToggle.addEventListener('click', () => {
+    defaultTheme === darkTheme ? defaultTheme = lightTheme : defaultTheme = darkTheme;
+    canvas.style.backgroundColor = defaultTheme.bgColor;
+    initDrawing(defaultDataYear, defaultTheme);
+    if(window.innerWidth <= 500) {
+      redrawMonthNames(defaultTheme);
     }
   });
 
@@ -420,10 +444,10 @@ export default (() => {
 
   window.addEventListener('resize', () => {
     calcValues(defaultDataYear);
-    initDrawing(defaultDataYear);
+    initDrawing(defaultDataYear, defaultTheme);
 
     if(window.innerWidth <= 500) {
-      redrawMonthNames(); // draw half of months for responsiveness
+      redrawMonthNames(defaultTheme); // draw half of months for responsiveness
     }
   });
 })();

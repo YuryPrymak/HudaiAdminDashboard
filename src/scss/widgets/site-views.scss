@@ -34,10 +34,9 @@
             height: 40px;
           }
 
-  
           &:hover {
             svg {
-              fill: #fff;
+              fill: var(--svg-icon-color-hover);
             }
           }
   
@@ -45,7 +44,7 @@
             width: 90%;
             height: 90%;
             margin-top: 2px;
-            fill: #b1b2b5;
+            fill: var(--svg-icon-color);
             @include transition(fill .1s ease-in-out);
 
             @include media-md {
@@ -60,8 +59,8 @@
           top: 30px;
           right: 0;
           border-radius: 5px;
-          background-color: #282a31;
-          box-shadow: 0 0 7px 0 rgba(24, 24, 25, 0.75);
+          background-color: var(--widget-bg);
+          box-shadow: 0 0 7px 0 var(--box-shadow);
           z-index: 1;
 
           li {
@@ -71,7 +70,7 @@
               display: block;
               padding: 0 15px;
               font-size: 18px;
-              color: #b7b8ba;
+              color: var(--text-color-two);
               white-space: nowrap;
               cursor: pointer;
               @include transition(color .1s ease-in-out);
@@ -85,7 +84,7 @@
               }
 
               &:hover {
-                color: #fff;
+                color: var(--text-color-two-hover);
               }
             }
           }

@@ -3,8 +3,8 @@
 
 .nav {
   width: 340px;
-  background-color: #24262d;
-  box-shadow: 5px 0 5px -5px rgba(24, 24, 25, 0.75);
+  background-color: var(--second-bg-color);
+  box-shadow: 5px 0 5px -5px var(--box-shadow);
   z-index: 999;
 
   @include media-xl {
@@ -27,9 +27,9 @@
         height: 70px;
         position: relative;
         border: none;
-        border-bottom: 2px solid #35373d;
-        background-color: #24262d;
-        color: #c8c9ca;
+        border-bottom: 2px solid var(--border-color);
+        background-color: var(--second-bg-color);
+        color: var(--text-color-two);
         text-align: left;
         text-indent: 100px;
         font-size: 24px;
@@ -44,11 +44,11 @@
         }
 
         &:hover {
-          color: #fff;
+          color: var(--text-color-two-hover);
 
           .svg-open-close,
           .svg-icon {
-            fill: #fff;
+            fill: var(--svg-icon-color-hover);
           }
         }
 
@@ -58,7 +58,7 @@
           position: absolute;
           top: 20px;
           left: 60px;
-          fill: #c2c3c5;
+          fill: var(--svg-icon-color);
           @include transition(fill .1s ease-in-out);
 
           @include media-xl {
@@ -72,7 +72,7 @@
           position: absolute;
           top: 25px;
           right: 25px;
-          fill: #7a7b7f;
+          fill: var(--svg-icon-color);
           @include transition(fill .1s ease-in-out);
           
           rect {
@@ -113,15 +113,15 @@
         overflow: hidden;
 
         li {
-          border-bottom: 2px solid #35373d;
+          border-bottom: 2px solid var(--border-color);
 
           a {
             width: 100%;
             height: 70px;
             display: block;
             position: relative;
-            background-color: #212228;
-            color: #c8c9ca;
+            background-color: var(--main-bg-color);
+            color: var(--text-color-two);
             line-height: 70px;
             text-indent: 100px;
             font-size: 24px;
@@ -133,7 +133,7 @@
             }
 
             &:hover {
-              color: #fff;
+              color: var(--text-color-two-hover);
             }
 
             .new-messages-counter,
@@ -166,7 +166,7 @@
             }
 
             .messages-counter {
-              background-color: #15161b;
+              background-color: var(--icon-bg);
             }
           }
         }
@@ -176,7 +176,7 @@
     .sub-nav-open {
       .btn-sub-nav-toggle {
         .svg-open-close {
-          fill: #c8c9ca;
+          fill: var(--svg-icon-color-hover);
   
           .rect-2 {
             @include transform(rotate(90deg));
@@ -199,10 +199,10 @@
 
       &:hover .btn-sub-nav-toggle {
         width: 340px;
-        color: #fff;
+        color: var(--text-color-two-hover);
 
         .svg-icon {
-          fill: #fff;
+          fill: var(--svg-icon-color-hover);
         }
       }
 

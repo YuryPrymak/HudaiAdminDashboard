@@ -4,7 +4,6 @@
 .content-wrapper {
   .widget-radar-chart {
     padding-bottom: 30px;
-    background-color: #282a31;
 
     .radar-chart {
       margin: 0 auto;
@@ -26,7 +25,7 @@
           margin: 0 10px 10px 10px;
           padding-left: 15px;
           font-size: 12px;
-          color: #d8d8d9;
+          color: var(--text-color-two);
           cursor: pointer;
 
           @include media-md {
@@ -35,6 +34,10 @@
   
           @include media-sm {
             font-size: 18px;
+          }
+
+          &:hover {
+            color: var(--text-color-two-hover);
           }
 
           .color-id {
