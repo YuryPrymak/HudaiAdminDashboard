@@ -7,6 +7,17 @@ export default (() => {
   let currentOpenedElIndex = null;
   let isNavMinimize = null;
 
+  const cookieTime = 7 * 24 * 60 * 60; // Seconds
+
+  const getCookie = function(name) {
+    const matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+  };
+
+  const setCookie = function(value) {
+    document.cookie = `navState=${value}; path=/; max-age=${cookieTime}`;
+  };
+
   const closeSubNav = function() {
     navList.forEach(el => {
       el.classList.remove('sub-nav-open');
@@ -39,6 +50,28 @@ export default (() => {
     nav.classList.toggle('nav-minimize');
   };
 
+  const cookieValue = getCookie('navState');
+
+  switch (cookieValue) {
+    case 'notMinimize':
+      setCookie('notMinimize');
+      break;
+    case 'minimize':
+      setCookie('minimize');
+      break;
+    default:
+      setCookie('notMinimize');
+      break;
+  }
+
+  if((window.innerWidth <= 1280 && window.innerWidth >= 920) || cookieValue === 'minimize') {
+    isNavMinimize = true;
+    closeSubNav();
+    nav.classList.add('nav-minimize');
+  } else {
+    isNavMinimize = false;
+  }
+
   navList.forEach((item, i) => {
     item.addEventListener('click', e => {
       if(!isNavMinimize && e.target.closest('.btn-sub-nav-toggle')) {
@@ -48,6 +81,9 @@ export default (() => {
   });
 
   btnNavMinimizeToggle.addEventListener('click', () => {
+    const cookieValue = getCookie('navState');
+
+    isNavMinimize ? setCookie('notMinimize') : setCookie('minimize');
     isNavMinimize = !isNavMinimize;
     closeSubNav();
     navMinimizeToggle();
@@ -56,20 +92,15 @@ export default (() => {
   btnNavToggle.addEventListener('click', closeSubNav);
 
   window.addEventListener('resize', () => {
-    if(window.innerWidth <= 1280 && window.innerWidth >= 920) {
+    const cookieValue = getCookie('navState');
+    if((window.innerWidth <= 1280 && window.innerWidth >= 920) || cookieValue === 'minimize') {
       isNavMinimize = true;
       closeSubNav();
       nav.classList.add('nav-minimize');
-    } else if(window.innerWidth < 920) {
+    } else {
       isNavMinimize = false;
-    }
-  });
-
-  window.addEventListener('load', () => {
-    window.innerWidth <= 1280 && window.innerWidth >= 920 ? isNavMinimize = true : isNavMinimize = false;
-    if(isNavMinimize) {
       closeSubNav();
-      nav.classList.add('nav-minimize');
+      nav.classList.remove('nav-minimize');
     }
   });
 })();

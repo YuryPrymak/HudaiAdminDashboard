@@ -24,7 +24,6 @@ export default (() => {
   canvas.setAttribute('height', height);
   canvas.style.width = `${width}px`;
   canvas.style.height = `${height}px`;
-  canvas.style.backgroundColor = defaultTheme.bgColor;
 
   const data = [
     {
@@ -74,6 +73,23 @@ export default (() => {
       highestValue = el.value;
     }
   });
+
+  const getCookie = function(name) {
+    const matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+  };
+
+  const checkTheme = function() {
+    const cookieValue = getCookie('colorTheme');
+
+    if(cookieValue === 'dark') {
+      defaultTheme = darkTheme;
+    } else if(cookieValue === 'light') {
+      defaultTheme = lightTheme;
+    }
+
+    canvas.style.backgroundColor = defaultTheme.bgColor;
+  };
 
   const drawGrid = function({ gridColor, bgColor }) {
     c.beginPath();
@@ -163,6 +179,7 @@ export default (() => {
     colStep = parseInt((width - bgWidthLeft) / (data.length), 10);
   };
 
+  checkTheme();
   calcValues();
   initDrawing(defaultTheme);
 

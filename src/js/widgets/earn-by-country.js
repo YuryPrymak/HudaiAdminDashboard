@@ -20,7 +20,6 @@ export default (() => {
   canvas.setAttribute('height', widthAndHeight);
   canvas.style.width = `${widthAndHeight}px`;
   canvas.style.height = `${widthAndHeight}px`;
-  canvas.style.backgroundColor = defaultTheme.bgColor;
 
   const { PI } = Math;
 
@@ -54,6 +53,23 @@ export default (() => {
 
   let startPost = 1.5 * PI; // top of circle
 
+  const getCookie = function(name) {
+    const matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+  };
+
+  const checkTheme = function() {
+    const cookieValue = getCookie('colorTheme');
+
+    if(cookieValue === 'dark') {
+      defaultTheme = darkTheme;
+    } else if(cookieValue === 'light') {
+      defaultTheme = lightTheme;
+    }
+
+    canvas.style.backgroundColor = defaultTheme.bgColor;
+  };
+
   const calcOtherValue = function() {
     let value = 0;
     data.forEach((el, i) => {
@@ -84,6 +100,7 @@ export default (() => {
     }
   };
 
+  checkTheme();
   initDrawing();
 
   btnThemesToggle.addEventListener('click', () => {

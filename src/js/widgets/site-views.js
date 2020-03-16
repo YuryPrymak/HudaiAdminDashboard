@@ -28,7 +28,6 @@ export default (() => {
   canvas.setAttribute('height', height);
   canvas.style.width = `${width}px`;
   canvas.style.height = `${height}px`;
-  canvas.style.backgroundColor = defaultTheme.bgColor;
 
   const { PI } = Math;
 
@@ -204,6 +203,23 @@ export default (() => {
 
   const getDataDayInRatio = function(month, day) {
     return parseInt(colStep * month, 10) + paddingLeft - colStep + parseInt((colStep / 30) * day, 10);
+  };
+
+  const getCookie = function(name) {
+    const matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+  };
+
+  const checkTheme = function() {
+    const cookieValue = getCookie('colorTheme');
+
+    if(cookieValue === 'dark') {
+      defaultTheme = darkTheme;
+    } else if(cookieValue === 'light') {
+      defaultTheme = lightTheme;
+    }
+
+    canvas.style.backgroundColor = defaultTheme.bgColor;
   };
 
   const drawGrid = function({ gridColor, bgColor }) {
@@ -402,6 +418,7 @@ export default (() => {
     c.closePath();
   };
 
+  checkTheme();
   calcValues(defaultDataYear);
   initDrawing(defaultDataYear, defaultTheme);
   if(window.innerWidth <= 500) {

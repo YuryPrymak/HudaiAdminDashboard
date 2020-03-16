@@ -24,7 +24,6 @@ export default (() => {
   canvas.setAttribute('height', height);
   canvas.style.width = `${width}px`;
   canvas.style.height = `${height}px`;
-  canvas.style.backgroundColor = defaultTheme.bgColor;
 
   const { PI, sin, cos } = Math;
 
@@ -49,6 +48,23 @@ export default (() => {
       color: '#6fe7dd',
     },
   ];
+
+  const getCookie = function(name) {
+    const matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+  };
+
+  const checkTheme = function() {
+    const cookieValue = getCookie('colorTheme');
+
+    if(cookieValue === 'dark') {
+      defaultTheme = darkTheme;
+    } else if(cookieValue === 'light') {
+      defaultTheme = lightTheme;
+    }
+
+    canvas.style.backgroundColor = defaultTheme.bgColor;
+  };
 
   const degToRad = function(deg) { // Convert degrees to radians
     return (deg * PI) / 180;
@@ -184,6 +200,7 @@ export default (() => {
   };
 
   window.innerWidth <= 400 ? chartRadius = 110 : chartRadius = 130;
+  checkTheme();
   calcValues();
   initDrawing(data, defaultTheme);
 
