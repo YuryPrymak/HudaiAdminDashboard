@@ -47,44 +47,13 @@
           position: relative;
           margin: 10px 0;
 
-          &::before {
-            content: '';
+          .dot {
             width: 6px;
             height: 6px;
             position: absolute;
             top: 4px;
             left: -12px;
             border-radius: 50%;
-          }
-
-          &:nth-child(1) {
-            &::before {
-              background-color: #6fe7dd;
-            }
-          }
-
-          &:nth-child(2) {
-            &::before {
-              background-color: #3490de;
-            }
-          }
-
-          &:nth-child(3) {
-            &::before {
-              background-color: #6639a6;
-            }
-          }
-
-          &:nth-child(4) {
-            &::before {
-              background-color: #d11e5b; 
-            }
-          }
-
-          &:nth-child(5) {
-            &::before {
-              background-color: #212228;
-            }
           }
 
           .country,

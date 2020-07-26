@@ -11,12 +11,24 @@
 
     .tasks {
       height: 320px;
+      position: relative;
       margin: 0 20px;
       padding-right: 5px;
       overflow: auto;
 
       @include media-xs {
         margin: 0 10px;
+      }
+
+      &::before {
+        content: 'No tasks';
+        display: none;
+        position: absolute;
+        top: 10px;
+        left: calc(50%);
+        color: var(--text-color-two);
+        font-size: 18px;
+        @include transform(translateX(-50%));
       }
 
       &::-webkit-scrollbar {
@@ -126,6 +138,12 @@
             @include transition(fill .1s ease-in-out);
           }
         }
+      }
+    }
+
+    .tasks-list-empty {
+      &::before {
+        display: block;
       }
     }
 

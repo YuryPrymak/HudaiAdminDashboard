@@ -15,7 +15,12 @@
     "sourceType": "module"
   },
   "rules": {
-    "max-len": ["error", { "code": 110 }],
+    "max-len": ["error", { "code": 120 }],
+    "no-param-reassign": "off",
+    "no-useless-constructor": "off",
+    "no-else-return": "off",
+    "consistent-return": "off",
+    "class-methods-use-this": "off",
     "arrow-parens": [2, "as-needed", {"requireForBlockBody": false}],
     "func-names": ["error", "as-needed"],
     "space-before-function-paren": ["error", "never"],

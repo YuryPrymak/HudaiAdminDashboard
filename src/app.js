@@ -4,13 +4,27 @@ import './js/nav';
 import './js/mobile-nav';
 import './js/themes';
 import './js/preloader';
-import './js/widgets/site-views';
-import './js/widgets/weekly-earning';
-import './js/widgets/earn-by-country';
-import './js/widgets/contacts';
-import './js/widgets/reviews';
-import './js/widgets/tasks';
-import './js/widgets/radar-chart';
+
+import Contacts from './js/widgets/Contacts';
+import dataContacts from './js/data/contacts';
+
+import Reviews from './js/widgets/Reviews';
+import dataReviews from './js/data/reviews';
+
+import Tasks from './js/widgets/Tasks';
+import dataTasks from './js/data/tasks';
+
+import OurTechnologies from './js/widgets/OurTechnologies';
+import dataOurTechnologies from './js/data/ourTechnologies';
+
+import EarnByCountry from './js/widgets/EarnByCountry';
+import dataEarnByCountry from './js/data/earnByCountry';
+
+import WeeklyEarning from './js/widgets/WeeklyEarning';
+import dataWeeklyEarning from './js/data/weeklyEarning';
+
+import SiteViews from './js/widgets/SiteViews';
+import dataSiteViews from './js/data/siteViews';
 
 import './scss/main.scss';
 import './scss/header.scss';
@@ -23,4 +37,32 @@ import './scss/widgets/earn-by-country.scss';
 import './scss/widgets/contacts.scss';
 import './scss/widgets/reviews.scss';
 import './scss/widgets/tasks.scss';
-import './scss/widgets/radar-chart.scss';
+import './scss/widgets/our-technologies.scss';
+
+const contactsSelector = '.widgets .widget-contacts';
+const contactsTitle = 'Contacts';
+const contacts = new Contacts(contactsTitle, dataContacts, contactsSelector);
+
+const reviewsSelector = '.widgets .widget-reviews';
+const reviewsTitle = 'Reviews';
+const reviews = new Reviews(reviewsTitle, dataReviews, reviewsSelector);
+
+const tasksSelector = '.widgets .widget-tasks';
+const tasksTitle = 'Tasks';
+const tasks = new Tasks(tasksTitle, dataTasks, tasksSelector);
+
+const ourTechnologiesSelector = '.widgets .widget-our-technologies';
+const ourTechnologiesTitle = 'Our Technologies';
+const ourTechnologies = new OurTechnologies(ourTechnologiesTitle, dataOurTechnologies, ourTechnologiesSelector);
+
+const earnByCountrySelector = '.widgets .widget-earn-by-country';
+const earnByCountryTitle = 'Earn By Country';
+const earnByCountry = new EarnByCountry(earnByCountryTitle, dataEarnByCountry, earnByCountrySelector);
+
+const weeklyEarningSelector = '.widgets .widget-weekly-earning';
+const weeklyEarningTitle = 'Weekly Earning';
+const weeklyEarning = new WeeklyEarning(weeklyEarningTitle, dataWeeklyEarning, weeklyEarningSelector);
+
+const siteViewsSelector = '.widgets .widget-site-views';
+const siteViewsTitle = 'Site Views';
+const siteViews = new SiteViews(siteViewsTitle, dataSiteViews, siteViewsSelector);

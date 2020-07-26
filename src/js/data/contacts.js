@@ -1,0 +1,51 @@
+export default [
+  {
+    name: 'Jone Evans',
+    company: 'Troyosoft',
+    photoUrl: '/src/img/widget-contacts/1.jpg',
+    messages: 2,
+    isOnline: true,
+  },
+  {
+    name: 'Shila Mendez',
+    company: 'AZ Security',
+    photoUrl: '/src/img/widget-contacts/2.jpg',
+    messages: 0,
+    isOnline: false,
+  },
+  {
+    name: 'Alex White',
+    company: 'ZC software',
+    photoUrl: '/src/img/widget-contacts/3.jpg',
+    messages: 1,
+    isOnline: true,
+  },
+  {
+    name: 'Amila Johnson',
+    company: 'Fivegrid Corp',
+    photoUrl: '/src/img/widget-contacts/4.jpg',
+    messages: 0,
+    isOnline: false,
+  },
+  {
+    name: 'Alisa Wilson',
+    company: 'WebDesignPro',
+    photoUrl: '/src/img/widget-contacts/5.jpg',
+    messages: 1,
+    isOnline: false,
+  },
+  {
+    name: 'Alex Bell',
+    company: 'WD Company',
+    photoUrl: '/src/img/widget-contacts/6.jpg',
+    messages: 0,
+    isOnline: false,
+  },
+  {
+    name: 'Sarah Smith',
+    company: 'UI Corp',
+    photoUrl: '/src/img/widget-contacts/7.jpg',
+    messages: 0,
+    isOnline: true,
+  },
+];

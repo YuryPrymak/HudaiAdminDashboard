@@ -319,7 +319,7 @@
         max-width: 100%;
       }
 
-      .site-views {
+      .linear-diagram {
         position: absolute;
       }
     }
@@ -387,7 +387,7 @@
     .widget-contacts,
     .widget-reviews,
     .widget-tasks,
-    .widget-radar-chart {
+    .widget-our-technologies {
       width: calc(50% - 10px);
 
       @include media-lg {
@@ -395,7 +395,7 @@
       }
     }
 
-    .widget-radar-chart {
+    .widget-our-technologies {
       position: relative;
 
       @include media-lg {
