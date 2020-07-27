@@ -27,6 +27,13 @@ class Widget {
 
     return root;
   }
+
+  addWidgetHeaderListener() {
+    const btnOptions = this.root.querySelector('.btn-options');
+    const optionsList = this.root.querySelector('.options-list');
+
+    btnOptions.addEventListener('click', () => optionsList.classList.toggle('show-options'));
+  }
 }
 
 export default Widget;

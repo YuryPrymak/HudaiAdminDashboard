@@ -62,6 +62,8 @@ class EarnByCountry extends DonutChart {
     const btnThemesToggle = document.querySelector('.header .btn-themes-toggle');
 
     btnThemesToggle.addEventListener('click', this.themeToggle.bind(this));
+
+    this.addWidgetHeaderListener();
   }
 }
 

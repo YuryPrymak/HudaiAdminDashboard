@@ -111,6 +111,8 @@ class SiteViews extends LinearDiagram {
         yearsList.classList.remove('show-years-list');
       }
     });
+
+    this.addWidgetHeaderListener();
   }
 }
 

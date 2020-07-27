@@ -129,6 +129,8 @@ class Tasks extends Widget {
         this.addTask();
       }
     });
+
+    this.addWidgetHeaderListener();
   }
 }
 

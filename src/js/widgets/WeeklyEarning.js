@@ -29,6 +29,8 @@ class WeeklyEarning extends BarGraph {
 
     btnThemesToggle.addEventListener('click', this.themeToggle.bind(this));
     window.addEventListener('resize', () => this.updateCanvas('width', this.root.clientWidth));
+
+    this.addWidgetHeaderListener();
   }
 }
 

@@ -8,6 +8,7 @@ class Reviews extends Widget {
     this.root = document.querySelector(rootSelector);
 
     this.render();
+    this.addListeners();
   }
 
   getReviewsTemplate() {
@@ -43,6 +44,10 @@ class Reviews extends Widget {
   render() {
     this.root.append(this.getHeaderTemplate());
     this.root.append(this.getReviewsTemplate());
+  }
+
+  addListeners() {
+    this.addWidgetHeaderListener();
   }
 }
 

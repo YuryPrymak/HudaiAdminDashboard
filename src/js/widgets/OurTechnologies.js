@@ -93,6 +93,8 @@ class OurTechnologies extends RadarChart {
         this.updateCanvas('data', moveToTop(this.data, projectName));
       }
     });
+
+    this.addWidgetHeaderListener();
   }
 }
 

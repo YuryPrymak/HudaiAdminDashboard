@@ -116,6 +116,8 @@ class Contacts extends Widget {
     this.searchInput.addEventListener('input', e => {
       this.setFilter(e);
     });
+
+    this.addWidgetHeaderListener();
   }
 }
 

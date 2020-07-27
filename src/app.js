@@ -1,3 +1,5 @@
+import setWindowEventListeners from './js/utils/windowEventListeners';
+
 import './js/main';
 import './js/search-form';
 import './js/nav';
@@ -66,3 +68,5 @@ const weeklyEarning = new WeeklyEarning(weeklyEarningTitle, dataWeeklyEarning, w
 const siteViewsSelector = '.widgets .widget-site-views';
 const siteViewsTitle = 'Site Views';
 const siteViews = new SiteViews(siteViewsTitle, dataSiteViews, siteViewsSelector);
+
+setWindowEventListeners();
