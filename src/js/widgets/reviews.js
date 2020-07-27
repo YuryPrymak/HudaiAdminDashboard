@@ -1,8 +1,10 @@
 import Widget from './Widget';
 
 class Reviews extends Widget {
-  constructor(widgetTitle, reviews, rootSelector) {
+  constructor(emitter, widgetTitle, reviews, rootSelector) {
     super(widgetTitle);
+
+    this.emitter = emitter;
 
     this.reviews = reviews;
     this.root = document.querySelector(rootSelector);
@@ -48,6 +50,7 @@ class Reviews extends Widget {
 
   addListeners() {
     this.addWidgetHeaderListener();
+    this.addBtnOptionsEmitter();
   }
 }
 

@@ -1,13 +1,15 @@
 import LinearDiagram from './charts/LinearDiagram';
 
 class SiteViews extends LinearDiagram {
-  constructor(title, data, rootSelector) {
+  constructor(emitter, title, data, rootSelector) {
     super(title, {
       data: data[Object.keys(data)[Object.keys(data).length - 1]],
       width: document.querySelector(rootSelector).clientWidth,
       height: 390,
       valueStep: 50,
     });
+
+    this.emitter = emitter;
 
     this.allData = data;
     this.regExpDataYear = /\d+/g;
@@ -113,6 +115,7 @@ class SiteViews extends LinearDiagram {
     });
 
     this.addWidgetHeaderListener();
+    this.addBtnOptionsEmitter();
   }
 }
 

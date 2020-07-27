@@ -1,6 +1,7 @@
 class Widget {
   constructor(title) {
     this.title = title;
+    this.optionsList = null;
   }
 
   getHeaderTemplate() {
@@ -30,9 +31,23 @@ class Widget {
 
   addWidgetHeaderListener() {
     const btnOptions = this.root.querySelector('.btn-options');
-    const optionsList = this.root.querySelector('.options-list');
+    this.optionsList = this.root.querySelector('.options-list');
 
-    btnOptions.addEventListener('click', () => optionsList.classList.toggle('show-options'));
+    btnOptions.addEventListener('click', () => {
+      this.optionsList.classList.toggle('show-options');
+
+      this.emitter.emit('click:btn-options', {
+        title: this.title,
+      });
+    });
+  }
+
+  addBtnOptionsEmitter() {
+    this.emitter.subscribe('click:btn-options', data => {
+      if(data.title !== this.title) {
+        this.optionsList.classList.remove('show-options');
+      }
+    });
   }
 }
 

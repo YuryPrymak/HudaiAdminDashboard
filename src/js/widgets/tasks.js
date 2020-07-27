@@ -1,8 +1,10 @@
 import Widget from './Widget';
 
 class Tasks extends Widget {
-  constructor(widgetTitle, tasks, rootSelector) {
+  constructor(emitter, widgetTitle, tasks, rootSelector) {
     super(widgetTitle);
+
+    this.emitter = emitter;
 
     this.tasks = tasks;
     this.rootSelector = rootSelector;
@@ -131,6 +133,7 @@ class Tasks extends Widget {
     });
 
     this.addWidgetHeaderListener();
+    this.addBtnOptionsEmitter();
   }
 }
 

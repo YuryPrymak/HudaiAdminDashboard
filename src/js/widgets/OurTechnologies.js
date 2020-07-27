@@ -1,13 +1,15 @@
 import RadarChart from './charts/RadarChart';
 
 class OurTechnologies extends RadarChart {
-  constructor(title, data, rootSelector) {
+  constructor(emitter, title, data, rootSelector) {
     super(title, {
       data,
       width: document.querySelector(rootSelector).clientWidth,
       height: 350,
       chartRadius: 130,
     });
+
+    this.emitter = emitter;
 
     this.rootSelector = rootSelector;
     this.root = document.querySelector(this.rootSelector);
@@ -95,6 +97,7 @@ class OurTechnologies extends RadarChart {
     });
 
     this.addWidgetHeaderListener();
+    this.addBtnOptionsEmitter();
   }
 }
 

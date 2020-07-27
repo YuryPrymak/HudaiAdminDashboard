@@ -1,13 +1,15 @@
 import BarGraph from './charts/BarGraph';
 
 class WeeklyEarning extends BarGraph {
-  constructor(title, data, rootSelector) {
+  constructor(emitter, title, data, rootSelector) {
     super(title, {
       data,
       width: document.querySelector(rootSelector).clientWidth,
       height: 160,
       valueStep: 200,
     });
+
+    this.emitter = emitter;
 
     this.rootSelector = rootSelector;
     this.root = document.querySelector(this.rootSelector);
@@ -31,6 +33,7 @@ class WeeklyEarning extends BarGraph {
     window.addEventListener('resize', () => this.updateCanvas('width', this.root.clientWidth));
 
     this.addWidgetHeaderListener();
+    this.addBtnOptionsEmitter();
   }
 }
 

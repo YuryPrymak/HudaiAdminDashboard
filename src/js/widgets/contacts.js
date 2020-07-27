@@ -1,8 +1,10 @@
 import Widget from './Widget';
 
 class Contacts extends Widget {
-  constructor(widgetTitle, contacts, rootSelector) {
+  constructor(emitter, widgetTitle, contacts, rootSelector) {
     super(widgetTitle);
+
+    this.emitter = emitter;
 
     this.contacts = contacts;
     this.rootSelector = rootSelector;
@@ -118,6 +120,7 @@ class Contacts extends Widget {
     });
 
     this.addWidgetHeaderListener();
+    this.addBtnOptionsEmitter();
   }
 }
 

@@ -1,11 +1,13 @@
 import DonutChart from './charts/DonutChart';
 
 class EarnByCountry extends DonutChart {
-  constructor(title, data, rootSelector) {
+  constructor(emitter, title, data, rootSelector) {
     super(title, {
       data,
       diameter: 120,
     });
+
+    this.emitter = emitter;
 
     this.data = data;
     this.rootSelector = rootSelector;
@@ -64,6 +66,7 @@ class EarnByCountry extends DonutChart {
     btnThemesToggle.addEventListener('click', this.themeToggle.bind(this));
 
     this.addWidgetHeaderListener();
+    this.addBtnOptionsEmitter();
   }
 }
 
