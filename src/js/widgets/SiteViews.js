@@ -1,7 +1,7 @@
 import LinearDiagram from './charts/LinearDiagram';
 
 class SiteViews extends LinearDiagram {
-  constructor(emitter, title, data, rootSelector) {
+  constructor(emitter, title, rootSelector, data) {
     super(title, {
       data: data[Object.keys(data)[Object.keys(data).length - 1]],
       width: document.querySelector(rootSelector).clientWidth,

@@ -17,6 +17,7 @@
   "rules": {
     "max-len": ["error", { "code": 120 }],
     "no-param-reassign": "off",
+    "no-new": "off",
     "no-useless-constructor": "off",
     "no-else-return": "off",
     "consistent-return": "off",

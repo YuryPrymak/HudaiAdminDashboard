@@ -1,7 +1,7 @@
 import Widget from './Widget';
 
 class Contacts extends Widget {
-  constructor(emitter, widgetTitle, contacts, rootSelector) {
+  constructor(emitter, widgetTitle, rootSelector, contacts) {
     super(widgetTitle);
 
     this.emitter = emitter;

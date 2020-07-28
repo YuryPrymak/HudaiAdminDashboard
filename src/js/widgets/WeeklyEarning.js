@@ -1,7 +1,7 @@
 import BarGraph from './charts/BarGraph';
 
 class WeeklyEarning extends BarGraph {
-  constructor(emitter, title, data, rootSelector) {
+  constructor(emitter, title, rootSelector, data) {
     super(title, {
       data,
       width: document.querySelector(rootSelector).clientWidth,

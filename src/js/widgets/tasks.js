@@ -1,7 +1,7 @@
 import Widget from './Widget';
 
 class Tasks extends Widget {
-  constructor(emitter, widgetTitle, tasks, rootSelector) {
+  constructor(emitter, widgetTitle, rootSelector, tasks) {
     super(widgetTitle);
 
     this.emitter = emitter;

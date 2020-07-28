@@ -1,7 +1,7 @@
 import RadarChart from './charts/RadarChart';
 
 class OurTechnologies extends RadarChart {
-  constructor(emitter, title, data, rootSelector) {
+  constructor(emitter, title, rootSelector, data) {
     super(title, {
       data,
       width: document.querySelector(rootSelector).clientWidth,

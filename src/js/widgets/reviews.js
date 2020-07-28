@@ -1,7 +1,7 @@
 import Widget from './Widget';
 
 class Reviews extends Widget {
-  constructor(emitter, widgetTitle, reviews, rootSelector) {
+  constructor(emitter, widgetTitle, rootSelector, reviews) {
     super(widgetTitle);
 
     this.emitter = emitter;

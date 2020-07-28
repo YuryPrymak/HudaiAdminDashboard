@@ -1,7 +1,7 @@
 import DonutChart from './charts/DonutChart';
 
 class EarnByCountry extends DonutChart {
-  constructor(emitter, title, data, rootSelector) {
+  constructor(emitter, title, rootSelector, data) {
     super(title, {
       data,
       diameter: 120,
