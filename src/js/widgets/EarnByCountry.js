@@ -61,11 +61,8 @@ class EarnByCountry extends DonutChart {
   }
 
   addListeners() {
-    const btnThemesToggle = document.querySelector('.header .btn-themes-toggle');
-
-    btnThemesToggle.addEventListener('click', this.themeToggle.bind(this));
-
     this.addWidgetHeaderListener();
+    this.addWidgetThemeListener();
     this.addBtnOptionsEmitter();
   }
 }

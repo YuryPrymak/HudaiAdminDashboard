@@ -50,7 +50,7 @@ canvas {
 
 .wrapper {
   display: grid;
-  grid-template-columns: auto;
+  grid-template-columns: auto 1fr;
   grid-template-rows: auto;
   grid-row-gap: 5px;
   grid-column-gap: 15px;

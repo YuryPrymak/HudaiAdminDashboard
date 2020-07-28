@@ -1,9 +1,9 @@
-import './js/main';
 import './js/search-form';
 import './js/nav';
 import './js/mobile-nav';
 import './js/themes';
 import './js/preloader';
+import './js/main';
 
 import './scss/main.scss';
 import './scss/header.scss';

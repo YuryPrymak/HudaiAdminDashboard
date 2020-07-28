@@ -13,7 +13,7 @@ class WeeklyEarning extends BarGraph {
 
     this.rootSelector = rootSelector;
     this.root = document.querySelector(this.rootSelector);
-    this.canvasClassName = 'weekly-earning';
+    this.canvasClassName = 'bar-graph';
 
     this.render();
     this.addListeners();
@@ -27,12 +27,10 @@ class WeeklyEarning extends BarGraph {
   }
 
   addListeners() {
-    const btnThemesToggle = document.querySelector('.header .btn-themes-toggle');
-
-    btnThemesToggle.addEventListener('click', this.themeToggle.bind(this));
     window.addEventListener('resize', () => this.updateCanvas('width', this.root.clientWidth));
 
     this.addWidgetHeaderListener();
+    this.addWidgetThemeListener();
     this.addBtnOptionsEmitter();
   }
 }

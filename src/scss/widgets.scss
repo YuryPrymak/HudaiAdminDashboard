@@ -319,7 +319,7 @@
         max-width: 100%;
       }
 
-      .linear-diagram {
+      canvas {
         position: absolute;
       }
     }
@@ -366,7 +366,7 @@
           margin-bottom: 10px;
         }
         
-        .weekly-earning { 
+        canvas { 
           position: absolute;
         }
       }
@@ -402,7 +402,7 @@
         height: 450px;
       }
 
-      .radar-chart {
+      canvas {
         position: absolute;
       }
     }

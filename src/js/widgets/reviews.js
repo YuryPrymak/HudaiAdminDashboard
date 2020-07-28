@@ -1,12 +1,12 @@
 import Widget from './Widget';
 
 class Reviews extends Widget {
-  constructor(emitter, widgetTitle, rootSelector, reviews) {
+  constructor(emitter, widgetTitle, rootSelector, data) {
     super(widgetTitle);
 
     this.emitter = emitter;
 
-    this.reviews = reviews;
+    this.data = data;
     this.root = document.querySelector(rootSelector);
 
     this.render();
@@ -35,7 +35,7 @@ class Reviews extends Widget {
       </li>
     `;
 
-    const template = this.reviews.map(review => getReview(review)).join('');
+    const template = this.data.map(review => getReview(review)).join('');
 
     root.classList.add('reviews');
     root.insertAdjacentHTML('afterbegin', template);

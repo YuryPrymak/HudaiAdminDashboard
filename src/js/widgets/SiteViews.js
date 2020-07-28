@@ -81,15 +81,12 @@ class SiteViews extends LinearDiagram {
   }
 
   addListeners() {
-    const btnThemesToggle = document.querySelector('.header .btn-themes-toggle');
     const btnNavMinimizeToggle = document.querySelector('.header .btn-nav-toggle');
     const btnShowYearsList = document.querySelector('.widget-site-views .btn-show-years-list');
     const yearsList = document.querySelector('.widget-site-views .years-list');
     const yearInfo = document.querySelector('.widget-site-views .year');
 
     btnNavMinimizeToggle.addEventListener('click', () => this.updateCanvas('width', this.root.clientWidth));
-
-    btnThemesToggle.addEventListener('click', this.themeToggle.bind(this));
 
     btnShowYearsList.addEventListener('click', () => {
       yearsList.classList.toggle('show-years-list');
@@ -115,6 +112,7 @@ class SiteViews extends LinearDiagram {
     });
 
     this.addWidgetHeaderListener();
+    this.addWidgetThemeListener();
     this.addBtnOptionsEmitter();
   }
 }

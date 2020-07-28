@@ -1,5 +1,3 @@
-import setWindowEventListeners from './utils/windowEventListeners';
-
 import Emitter from './Emitter';
 
 import Contacts from './widgets/Contacts';
@@ -71,9 +69,22 @@ export default (() => {
     },
   ];
 
-  widgets.forEach(widget => {
-    new widget.Class(emitter, widget.title, widget.selector, widget.data);
-  });
+  const widgetsInit = () => {
+    widgets.forEach(widget => {
+      new widget.Class(emitter, widget.title, widget.selector, widget.data);
+    });
+  };
 
+  const setWindowEventListeners = () => {
+    const optionsLists = document.querySelectorAll('.widget .options-list');
+
+    window.addEventListener('click', e => {
+      if(!e.target.closest('.widget .btn-options')) {
+        optionsLists.forEach(list => list.classList.remove('show-options'));
+      }
+    });
+  };
+
+  widgetsInit();
   setWindowEventListeners();
 })();

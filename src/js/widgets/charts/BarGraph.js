@@ -23,6 +23,7 @@ class BarGraph extends CanvasWidget {
 
     this.fillPaddings = {
       left: 40,
+      right: 5,
     };
   }
 
@@ -54,7 +55,7 @@ class BarGraph extends CanvasWidget {
     this.rowStep = rowsHeight / quantityLines;
 
     // Calc col step
-    const colsWidth = this.width - this.fillPaddings.left;
+    const colsWidth = this.width - this.fillPaddings.left - this.fillPaddings.right;
     this.colStep = parseInt(colsWidth / this.daysOfTheWeek.length, 10);
   }
 

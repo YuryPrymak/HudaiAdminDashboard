@@ -1,12 +1,12 @@
 import Widget from './Widget';
 
 class Tasks extends Widget {
-  constructor(emitter, widgetTitle, rootSelector, tasks) {
+  constructor(emitter, widgetTitle, rootSelector, data) {
     super(widgetTitle);
 
     this.emitter = emitter;
 
-    this.tasks = tasks;
+    this.data = data;
     this.rootSelector = rootSelector;
     this.root = document.querySelector(this.rootSelector);
     this.tasksSelector = null;
@@ -17,11 +17,11 @@ class Tasks extends Widget {
   }
 
   removeTask(taskId) {
-    this.tasks = this.tasks.filter(task => task.id !== +taskId);
+    this.data = this.data.filter(task => task.id !== +taskId);
     this.tasksSelector.innerHTML = '';
     this.tasksSelector.insertAdjacentHTML('afterbegin', this.getTaskList());
 
-    if(this.tasks.length === 0) {
+    if(this.data.length === 0) {
       this.tasksSelector.classList.add('tasks-list-empty');
     } else {
       this.tasksSelector.classList.remove('tasks-list-empty');
@@ -30,7 +30,7 @@ class Tasks extends Widget {
 
   addTask() {
     if(this.newTaskInput.value !== '' && this.newTaskInput.value.trim() !== '') {
-      this.tasks.push(
+      this.data.unshift(
         {
           title: this.newTaskInput.value,
           author: 'Admin',
@@ -45,7 +45,7 @@ class Tasks extends Widget {
       this.newTaskInput.value = '';
     }
 
-    if(this.tasks.length === 0) {
+    if(this.data.length === 0) {
       this.tasksSelector.classList.add('tasks-list-empty');
     } else {
       this.tasksSelector.classList.remove('tasks-list-empty');
@@ -68,7 +68,7 @@ class Tasks extends Widget {
       </li>
     `;
 
-    const template = this.tasks.map(task => getTask(task)).join('');
+    const template = this.data.map(task => getTask(task)).join('');
 
     return template;
   }

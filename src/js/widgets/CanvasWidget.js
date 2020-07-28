@@ -41,6 +41,12 @@ class CanvasWidget extends Widget {
     this.canvasInitDrawing();
   }
 
+  addWidgetThemeListener() {
+    const btnThemesToggle = document.querySelector('.header .btn-themes-toggle');
+
+    btnThemesToggle.addEventListener('click', this.themeToggle.bind(this));
+  }
+
   getCanvas(canvasClassName) {
     const canvas = document.createElement('canvas');
     canvas.classList.add(canvasClassName);

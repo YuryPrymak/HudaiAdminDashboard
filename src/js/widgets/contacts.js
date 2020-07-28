@@ -1,12 +1,12 @@
 import Widget from './Widget';
 
 class Contacts extends Widget {
-  constructor(emitter, widgetTitle, rootSelector, contacts) {
+  constructor(emitter, widgetTitle, rootSelector, data) {
     super(widgetTitle);
 
     this.emitter = emitter;
 
-    this.contacts = contacts;
+    this.data = data;
     this.rootSelector = rootSelector;
     this.root = document.querySelector(this.rootSelector);
     this.contactsSelector = null;
@@ -20,7 +20,7 @@ class Contacts extends Widget {
     const root = document.createElement('ul');
 
     root.classList.add('contacts');
-    root.insertAdjacentHTML('afterbegin', this.getContactsTemplate(this.contacts));
+    root.insertAdjacentHTML('afterbegin', this.getContactsTemplate(this.data));
 
     return root;
   }
@@ -81,13 +81,13 @@ class Contacts extends Widget {
   clearFilter() {
     this.searchInput.value = '';
     this.contactsSelector.classList.remove('contacts-list-empty');
-    this.updateContacts(this.contacts);
+    this.updateContacts(this.data);
   }
 
   setFilter(e) {
     const filteredContacts = [];
 
-    this.contacts.forEach(contact => {
+    this.data.forEach(contact => {
       if(contact.name.indexOf(e.target.value) !== -1) {
         filteredContacts.push(contact);
       }

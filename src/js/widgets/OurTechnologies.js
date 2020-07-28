@@ -54,11 +54,8 @@ class OurTechnologies extends RadarChart {
   }
 
   addListeners() {
-    const btnThemesToggle = document.querySelector('.header .btn-themes-toggle');
     const btnNavMinimizeToggle = document.querySelector('.header .btn-nav-toggle');
     const projectsList = document.querySelector('.widget-our-technologies .projects');
-
-    btnThemesToggle.addEventListener('click', this.themeToggle.bind(this));
 
     btnNavMinimizeToggle.addEventListener('click', () => {
       this.updateCanvas('width', this.root.clientWidth);
@@ -97,6 +94,7 @@ class OurTechnologies extends RadarChart {
     });
 
     this.addWidgetHeaderListener();
+    this.addWidgetThemeListener();
     this.addBtnOptionsEmitter();
   }
 }
