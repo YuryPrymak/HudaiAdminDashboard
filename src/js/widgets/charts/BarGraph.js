@@ -15,6 +15,7 @@ class BarGraph extends CanvasWidget {
     this.colStep = null;
     this.highestValue = null;
     this.daysOfTheWeek = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+    this.graphColWidth = 15;
 
     this.gridPaddings = {
       top: 15, // first row line start
@@ -88,7 +89,7 @@ class BarGraph extends CanvasWidget {
 
     // Days (axis X)
     this.daysOfTheWeek.forEach((day, i) => {
-      const x = this.colStep * (i + 1) + (this.fillPaddings.left - this.colStep + 10);
+      const x = this.colStep * (i + 1) + (this.fillPaddings.left - this.colStep + 9);
       const y = this.height - 15;
       this.ctx.fillText(day, x, y);
     });
@@ -109,7 +110,7 @@ class BarGraph extends CanvasWidget {
       const valueInPixels = parseInt((this.data[i] / this.valueStep) * this.rowStep, 10);
       const valInRatio = this.height - valueInPixels - this.gridPaddings.bottom;
 
-      this.ctx.lineWidth = '15';
+      this.ctx.lineWidth = this.graphColWidth;
       this.ctx.strokeStyle = this.theme.barGraphBgColor;
       this.ctx.setLineDash([0]);
       this.ctx.shadowOffsetX = 2;

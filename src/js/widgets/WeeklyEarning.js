@@ -24,14 +24,27 @@ class WeeklyEarning extends BarGraph {
     this.root.append(this.getCanvas(this.canvasClassName));
     this.canvasInitValues(this.canvasClassName);
     this.canvasInitDrawing();
+
+    this.updateGraphColWidth();
   }
 
   addListeners() {
-    window.addEventListener('resize', () => this.updateCanvas('width', this.root.clientWidth));
+    window.addEventListener('resize', () => {
+      this.updateCanvas('width', this.root.clientWidth);
+      this.updateGraphColWidth();
+    });
 
     this.addWidgetHeaderListener();
     this.addWidgetThemeListener();
     this.addBtnOptionsEmitter();
+  }
+
+  updateGraphColWidth() {
+    if(window.innerWidth <= 768 && window.innerWidth >= 550) {
+      this.updateCanvas('graphColWidth', 30);
+    } else {
+      this.updateCanvas('graphColWidth', 15);
+    }
   }
 }
 

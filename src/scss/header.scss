@@ -6,7 +6,7 @@
   height: 80px;
   display: flex;
   position: relative;
-  padding-right: 45px;
+  padding-right: 10px;
   background-color: var(--second-bg-color);
   box-shadow: 0 5px 7px 0 var(--box-shadow);
 
@@ -87,7 +87,7 @@
     left: 50%;
     @include transition(transform .2s ease-in-out);
     @include transform(translateX(-50%) translateY(-100px));
-    z-index: 99;
+    z-index: 999;
 
     .search-input {
       width: 100%;
@@ -326,6 +326,7 @@
         border-radius: 5px;
         background-color: var(--widget-bg);
         box-shadow: 0 0 7px 0 var(--box-shadow);
+        z-index: 1;
 
         li {
           margin: 10px 0;
@@ -427,7 +428,7 @@
   align-items: center;
   position: fixed;
   padding: 0;
-  z-index: 9999;
+  z-index: 999;
 
   @include media-sm {
     height: 220px;

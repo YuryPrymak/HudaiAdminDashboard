@@ -250,7 +250,7 @@
   position: fixed;
   bottom: 0;
   overflow-y: scroll;
-  z-index: 9999;
+  z-index: 999;
 
   @include media-sm {
     height: calc(100vh - 220px);

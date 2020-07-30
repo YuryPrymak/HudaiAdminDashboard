@@ -23,11 +23,16 @@ export default (() => {
       el.classList.remove('sub-nav-open');
       el.style.height = '70px';
     });
+    currentOpenedElIndex = null;
   };
 
   const openSubNav = function(index) {
+    const regExpGetNum = /\d+/;
+
     const liHeight = parseInt(subNav[0].firstElementChild.clientHeight, 10);
-    const liBorder = getComputedStyle(subNav[0].firstElementChild).getPropertyValue('border-bottom')[0];
+    const liBorder = getComputedStyle(subNav[0].firstElementChild)
+      .getPropertyValue('border-bottom-width')
+      .match(regExpGetNum)[0];
     const borders = subNav[index].childElementCount * liBorder;
     const subNavHeight = (subNav[index].childElementCount + 1) * liHeight + borders;
 
@@ -38,10 +43,9 @@ export default (() => {
   const subNavToggle = function(index) {
     if(index === currentOpenedElIndex) {
       closeSubNav();
-      currentOpenedElIndex = null;
     } else {
-      currentOpenedElIndex = index;
       closeSubNav();
+      currentOpenedElIndex = index;
       openSubNav(index);
     }
   };
@@ -50,7 +54,7 @@ export default (() => {
     nav.classList.toggle('nav-minimize');
   };
 
-  const cookieValue = getCookie('navState');
+  let cookieValue = getCookie('navState');
 
   switch (cookieValue) {
     case 'notMinimize':
@@ -74,15 +78,13 @@ export default (() => {
 
   navList.forEach((item, i) => {
     item.addEventListener('click', e => {
-      if(!isNavMinimize && e.target.closest('.btn-sub-nav-toggle')) {
+      if((!isNavMinimize && e.target.closest('.btn-sub-nav-toggle')) || window.innerWidth <= 920) {
         subNavToggle(i);
       }
     });
   });
 
   btnNavMinimizeToggle.addEventListener('click', () => {
-    const cookieValue = getCookie('navState');
-
     isNavMinimize ? setCookie('notMinimize') : setCookie('minimize');
     isNavMinimize = !isNavMinimize;
     closeSubNav();
@@ -92,7 +94,8 @@ export default (() => {
   btnNavToggle.addEventListener('click', closeSubNav);
 
   window.addEventListener('resize', () => {
-    const cookieValue = getCookie('navState');
+    cookieValue = getCookie('navState');
+
     if((window.innerWidth <= 1280 && window.innerWidth >= 920) || cookieValue === 'minimize') {
       isNavMinimize = true;
       closeSubNav();

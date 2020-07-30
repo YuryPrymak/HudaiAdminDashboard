@@ -9,13 +9,7 @@
 
 body {
   min-width: 320px;
-  // background-color: #212228;
   background-color: var(--main-bg-color);
-
-  .wrapper {
-    max-width: 1360px;
-    margin: 0 auto;
-  }
 }
 
 body,
@@ -49,6 +43,9 @@ canvas {
 }
 
 .wrapper {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding-right: 15px;
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto;
@@ -56,6 +53,10 @@ canvas {
   grid-column-gap: 15px;
   grid-template-areas: "header header"
                        "nav content";
+  
+  @include media-xl {
+    padding-right: 0;
+  }
 
   @include media-lg {
     grid-template-areas: "header header"
