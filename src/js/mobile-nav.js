@@ -1,12 +1,14 @@
 export default (() => {
   const header = document.querySelector('.header');
   const nav = document.querySelector('.nav');
+  const logo = document.querySelector('.header .logo');
   const btnNavToggle = document.querySelector('.header .btn-mobile-nav-toggle');
   const btnSvg = document.querySelector('.header .btn-mobile-nav-toggle svg');
   let navIsClosed = true;
 
   const openNav = function() {
     navIsClosed = false;
+    logo.focus();
     document.body.style.overflow = 'hidden';
     btnSvg.classList.remove('btn-toggle-svg-close');
     btnSvg.classList.add('btn-toggle-svg-open');

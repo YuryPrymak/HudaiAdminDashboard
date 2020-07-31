@@ -7,6 +7,11 @@
   box-sizing: border-box;
 }
 
+*:focus {
+  outline: none;
+  box-shadow: 0 0 2px 1px var(--focus-color) inset;
+}
+
 body {
   min-width: 320px;
   background-color: var(--main-bg-color);

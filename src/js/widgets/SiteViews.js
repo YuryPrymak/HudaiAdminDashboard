@@ -41,7 +41,7 @@ class SiteViews extends LinearDiagram {
 
     const yearTemplate = year => `
       <li>
-        <a class="btn-year">${year}</a>
+        <a href="" class="btn-year">${year}</a>
       </li>
     `;
 

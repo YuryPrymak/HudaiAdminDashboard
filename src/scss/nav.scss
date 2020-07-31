@@ -240,6 +240,30 @@
         }
       }
     }
+    
+    .nav-minimized-open {
+      overflow: visible;
+    
+      .btn-sub-nav-toggle {
+        width: 340px;
+        color: var(--text-color-two-hover);
+    
+        .svg-icon {
+          fill: var(--svg-icon-color-hover);
+        }
+      }
+    
+      .sub-nav {
+        width: 270px;
+        margin-left: 70px;
+    
+        li {
+          a {
+            text-indent: 30px;
+          }
+        }
+      }
+    }
   }
 }
 

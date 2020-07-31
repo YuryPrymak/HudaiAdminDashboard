@@ -1,3 +1,4 @@
+import './js/header';
 import './js/search-form';
 import './js/nav';
 import './js/mobile-nav';
