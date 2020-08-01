@@ -27,7 +27,11 @@ class Contacts extends Widget {
 
   getContactsTemplate(contacts) {
     const getMessageCounter = messagesQuantity => {
-      return messagesQuantity !== 0 ? `<div class="new-messages-counter">${messagesQuantity}</div>` : '';
+      if(messagesQuantity !== 0) {
+        return `<div class="new-messages-counter">${messagesQuantity}</div>`;
+      } else {
+        return '';
+      }
     };
 
     const getContact = contact => `

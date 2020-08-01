@@ -48,11 +48,6 @@
         }
       }
     ],
-    "object-curly-newline": [
-      "error", {
-        "ObjectExpression": "always",
-        "ObjectPattern": {"multiline": false}
-      }
-    ]
+    "object-curly-newline": "off"
   }
 }

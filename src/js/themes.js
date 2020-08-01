@@ -6,7 +6,7 @@ export default (() => {
   const cookieTime = 7 * 24 * 60 * 60; // Seconds
 
   const getCookie = function(name) {
-    const matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
+    const matches = document.cookie.match(new RegExp(`(?:^|; )${name}=([^;]*)`));
     return matches ? decodeURIComponent(matches[1]) : undefined;
   };
 
@@ -19,7 +19,7 @@ export default (() => {
     document.documentElement.classList.remove(removeClass);
   };
 
-  const cookieValue = getCookie('colorTheme');
+  let cookieValue = getCookie('colorTheme');
 
   switch (cookieValue) {
     case 'dark':
@@ -37,7 +37,7 @@ export default (() => {
   }
 
   btnThemesToggle.addEventListener('click', () => {
-    const cookieValue = getCookie('colorTheme');
+    cookieValue = getCookie('colorTheme');
 
     if(cookieValue === 'dark') {
       setCookie('light');

@@ -47,7 +47,9 @@ class RadarChart extends CanvasWidget {
 
     for(let i = 0; i < this.tech.length; i++) {
       this.ctx.moveTo(this.width / 2, this.height / 2);
-      this.ctx.lineTo(this.getX(this.chartRadius, i * this.sectorInRadians()), this.getY(this.chartRadius, i * this.sectorInRadians()));
+      const x = this.getX(this.chartRadius, i * this.sectorInRadians());
+      const y = this.getY(this.chartRadius, i * this.sectorInRadians());
+      this.ctx.lineTo(x, y);
     }
 
     this.ctx.stroke();
@@ -87,15 +89,19 @@ class RadarChart extends CanvasWidget {
     this.ctx.textBaseline = 'middle';
 
     this.tech.forEach((text, i) => {
-      if(this.getX(this.chartRadius, i * this.sectorInRadians()) === this.width / 2) {
+      const xCondition = this.getX(this.chartRadius, i * this.sectorInRadians());
+      const x = this.getX(this.chartRadius + 10, i * this.sectorInRadians());
+      const y = this.getY(this.chartRadius + 10, i * this.sectorInRadians());
+
+      if(xCondition === this.width / 2) {
         this.ctx.textAlign = 'center';
-      } else if(this.getX(this.chartRadius, i * this.sectorInRadians()) < this.width / 2) {
+      } else if(xCondition < this.width / 2) {
         this.ctx.textAlign = 'right';
-      } else if(this.getX(this.chartRadius, i * this.sectorInRadians()) > this.width / 2) {
+      } else if(xCondition > this.width / 2) {
         this.ctx.textAlign = 'left';
       }
 
-      this.ctx.fillText(text, this.getX(this.chartRadius + 10, i * this.sectorInRadians()), this.getY(this.chartRadius + 10, i * this.sectorInRadians()));
+      this.ctx.fillText(text, x, y);
     });
   }
 
@@ -110,11 +116,14 @@ class RadarChart extends CanvasWidget {
 
       for(let i = 0; i < this.tech.length; i++) {
         const valInRatio = (this.chartRadius / 100) * el.values[i];
+        const x = this.getX(valInRatio, i * this.sectorInRadians());
+        const y = this.getY(valInRatio, i * this.sectorInRadians());
 
         if(i === 0) {
-          this.ctx.moveTo(this.getX(valInRatio, i * this.sectorInRadians()), this.getY(valInRatio, i * this.sectorInRadians()));
+          this.ctx.moveTo(x, y);
         }
-        this.ctx.lineTo(this.getX(valInRatio, i * this.sectorInRadians()), this.getY(valInRatio, i * this.sectorInRadians()));
+
+        this.ctx.lineTo(x, y);
       }
 
       this.ctx.fill();
