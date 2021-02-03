@@ -15,7 +15,17 @@
   }
 
   @include media-lg {
-    padding: 0;
+    padding-right: 50px;
+    padding-left: 10px;
+  }
+
+  @include media-md {
+    height: 130px;
+  }
+
+  @include media-xs {
+    justify-content: center;
+    padding-right: 0;
   }
 
   .logo-wrapper {
@@ -28,9 +38,16 @@
     background-color: var(--main-bg-color);
 
     @include media-lg {
-      min-width: 100%;
-      margin: 0 auto;
+      min-width: 0;
       background: transparent;
+    }
+
+    @include media-md {
+      height: 80px;
+    }
+
+    @include media-xs {
+      display: none;
     }
 
     .logo {
@@ -127,18 +144,24 @@
     width: 80px;
     height: 100%;
     border: none;
+    flex-shrink: 0;
     border-left: 2px solid var(--border-color);
     background-color: transparent;
     cursor: pointer;
-
-    @include media-lg {
-      display: none;
-    }
 
     &:hover {
       svg {
         fill: var(--svg-icon-color-hover);
       }
+    }
+
+    @include media-md {
+      width: 70px;
+      height: 50px;
+      position: absolute;
+      bottom: 0;
+      left: calc(50% - 105px);
+      border-left: none;
     }
 
     svg {
@@ -156,22 +179,23 @@
     position: relative;
     border: none;
     border-left: 2px solid var(--border-color);
+    flex-shrink: 0;
     background-color: transparent;
     cursor: pointer;
-
-    @include media-lg {
-      width: 60px;
-      height: 80px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      border: none;
-    }
 
     &:hover {
       svg {
         fill: var(--svg-icon-color-hover);
       }
+    }
+
+    @include media-md {
+      width: 70px;
+      height: 50px;
+      position: absolute;
+      bottom: 0;
+      left: calc(50% - 35px);
+      border-left: none;
     }
 
     svg {
@@ -196,14 +220,15 @@
       font-weight: 500;
       text-shadow: 0px 2px 1px rgba(24, 24, 25, 0.75);
 
-      @include media-lg {
-        left: 32px;
+      @include media-md {
+        top: 7px;
+        left: 22px;
       }
 
       @include media-sm {
-        width: 28px;
-        height: 28px;
-        font-size: 20px;
+        width: 25px;
+        height: 25px;
+        font-size: 18px;
       }
     }
   }
@@ -214,17 +239,23 @@
     position: relative;
     border: none;
     border-left: 2px solid var(--border-color);
+    flex-shrink: 0;
     background-color: transparent;
     cursor: pointer;
-
-    @include media-lg {
-      display: none;
-    }
 
     &:hover {
       svg {
         fill: var(--svg-icon-color-hover);
       }
+    }
+
+    @include media-md {
+      width: 70px;
+      height: 50px;
+      position: absolute;
+      bottom: 0;
+      left: calc(50% + 35px);
+      border-left: none;
     }
 
     svg {
@@ -242,8 +273,10 @@
     padding-left: 20px;
     border-left: 2px solid var(--border-color);
 
-    @include media-lg {
-      display: none;
+    @include media-md {
+      height: 80px;
+      padding-left: 0;
+      border-left: none;
     }
 
     .user-photo {
@@ -255,10 +288,6 @@
 
     .user {
       margin-left: 5px;
-
-      @include media-lg {
-        margin-left: 10px;
-      }
 
       .user-name,
       .user-post {
@@ -338,10 +367,6 @@
             color: var(--text-color-two);
             white-space: nowrap;
             @include transition(color .1s ease-in-out);
-
-            @include media-lg {
-              padding: 0;
-            }
 
             @include media-sm {
               font-size: 24px;
@@ -427,73 +452,23 @@
 }
 
 .header-mobile-open {
-  height: 200px;
-  flex-direction: column;
-  align-items: center;
+  height: 80px;
+  justify-content: center;
   position: fixed;
   padding: 0;
   z-index: 999;
 
-  @include media-sm {
-    height: 220px;
-  }
-
   .logo-wrapper {
-    .logo {
-      padding: 0;
-
-      &::before {
-        display: none;
-      }
-    }
-  }
-
-  .search-form {
-    position: static;
-    margin-bottom: 5px;
-    @include transition(transform 0s ease-in-out);
-    @include transform(translateX(0) translateY(0));
-
-    @include media-sm {
-      width: calc(100% - 30px);
-    }
-
-    .search-input {
-      display: block;
-    }
-  }
-
-  .btn-themes-toggle {
-    width: 30px;
-    height: 30px;
     display: block;
-    position: absolute;
-    top: 25px;
-    right: 60px;
-    border: none;
-
-    svg {
-      margin: 0;
-    }
+    margin-right: 0;
   }
 
+  .search-form,
+  .btn-search-input-toggle,
+  .btn-notification,
+  .btn-themes-toggle,
   .user-info {
-    display: flex;
-    padding: 0;
-    border: none;
-
-    .profile-options {
-      .btn-profile-options {
-        display: none;
-      }
-  
-      .options {
-        display: block;
-        position: static;
-        background-color: transparent;
-        box-shadow: none;
-      }
-    }
+    display: none;
   }
 }
 

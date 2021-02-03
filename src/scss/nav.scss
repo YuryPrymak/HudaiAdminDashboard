@@ -269,16 +269,12 @@
 
 .nav-mobile-open {
   width: 100%;
-  height: calc(100vh - 200px);
+  height: calc(100% - 80px);
   display: block;
   position: fixed;
   bottom: 0;
   overflow-y: scroll;
   z-index: 999;
-
-  @include media-sm {
-    height: calc(100vh - 220px);
-  }
 
   &::-webkit-scrollbar {
     width: 5px;
