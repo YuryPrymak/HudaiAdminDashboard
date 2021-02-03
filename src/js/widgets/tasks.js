@@ -55,12 +55,12 @@ class Tasks extends Widget {
   getTaskList() {
     const getTask = task => `
       <li class="task" data-task-id="${task.id}">
-        <button class="checkbox ${task.isDone ? 'checkbox-toggle' : ''}"></button>
+        <button class="checkbox ${task.isDone ? 'checkbox-toggle' : ''}" aria-label="Task done"></button>
         <div class="info">
           <p class="title">${task.title}</p>
           <p class="name">Added by ${task.author}</p>
         </div>
-        <button class="btn-remove-task">  
+        <button class="btn-remove-task" aria-label="Remove task">  
           <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" preserveAspectRatio="none">
             <path d="M19.587 16.001l6.096 6.096c0.396 0.396 0.396 1.039 0 1.435l-2.151 2.151c-0.396 0.396-1.038 0.396-1.435 0l-6.097-6.096-6.097 6.096c-0.396 0.396-1.038 0.396-1.434 0l-2.152-2.151c-0.396-0.396-0.396-1.038 0-1.435l6.097-6.096-6.097-6.097c-0.396-0.396-0.396-1.039 0-1.435l2.153-2.151c0.396-0.396 1.038-0.396 1.434 0l6.096 6.097 6.097-6.097c0.396-0.396 1.038-0.396 1.435 0l2.151 2.152c0.396 0.396 0.396 1.038 0 1.435l-6.096 6.096z"></path>
           </svg>               
@@ -88,7 +88,7 @@ class Tasks extends Widget {
 
     const template = `
       <input class="input-add-new-task" type="text" maxlength="23" placeholder="Add a new task ..." autocomplete="off">
-      <button class="btn-add-new-task">
+      <button class="btn-add-new-task" aria-label="Add new task">
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" preserveAspectRatio="none">
           <path d="M24 18h-6v6h-4v-6h-6v-4h6v-6h4v6h6v4z"></path>
         </svg>

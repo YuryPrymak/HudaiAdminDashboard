@@ -25,10 +25,10 @@ class OurTechnologies extends RadarChart {
     const getProjectItem = projects => {
       const getProject = ({ name, color }) => `
         <li>
-          <a href="" class="btn-choice-project" data-name="${name}">
+          <button href="" class="btn-choice-project" data-name="${name}">
             <span class="color-id" style="background-color: ${color};"></span>
             ${name}
-          </a>
+          </button>
         </li>
       `;
 
