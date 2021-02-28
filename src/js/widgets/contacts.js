@@ -64,7 +64,8 @@ class Contacts extends Widget {
     const root = document.createElement('div');
 
     const template = `
-      <input class="input-search-contact" type="text" placeholder="Search contact ..." autocomplete="off">
+      <label for="input-search-contact">Search contact</label>
+      <input class="input-search-contact" id="input-search-contact" type="text" placeholder="Search contact ..." autocomplete="off">
       <button class="btn-clear" aria-label="Clear search input">
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" preserveAspectRatio="none">
           <path d="M18.984 6.422l-5.578 5.578 5.578 5.578-1.406 1.406-5.578-5.578-5.578 5.578-1.406-1.406 5.578-5.578-5.578-5.578 1.406-1.406 5.578 5.578 5.578-5.578z"></path>

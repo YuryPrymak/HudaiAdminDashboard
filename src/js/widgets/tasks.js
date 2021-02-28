@@ -87,7 +87,8 @@ class Tasks extends Widget {
     const root = document.createElement('div');
 
     const template = `
-      <input class="input-add-new-task" type="text" maxlength="23" placeholder="Add a new task ..." autocomplete="off">
+      <label for="input-add-new-task">Add new task</label>
+      <input class="input-add-new-task" id="input-add-new-task" type="text" maxlength="23" placeholder="Add a new task ..." autocomplete="off">
       <button class="btn-add-new-task" aria-label="Add new task">
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" preserveAspectRatio="none">
           <path d="M24 18h-6v6h-4v-6h-6v-4h6v-6h4v6h6v4z"></path>

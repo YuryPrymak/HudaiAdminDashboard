@@ -12,12 +12,8 @@ class SiteViews extends LinearDiagram {
     this.emitter = emitter;
 
     this.allData = data;
-    this.regExpDataYear = /\d+/g;
-    this.dataYears = [
-      ...Object.keys(data)
-        .join('')
-        .matchAll(this.regExpDataYear)]
-      .map(yearInfo => yearInfo[0]);
+    this.dataYears = [...Object.keys(data)]
+      .map(year => year.match(/\d+/)[0]);
 
     this.rootSelector = rootSelector;
     this.root = document.querySelector(this.rootSelector);
