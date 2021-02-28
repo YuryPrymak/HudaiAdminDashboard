@@ -1,3 +1,5 @@
+import 'focus-visible';
+
 import './js/header';
 import './js/search-form';
 import './js/nav';
